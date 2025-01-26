@@ -130,8 +130,8 @@ GameObject:
   - component: {fileID: 145309589}
   - component: {fileID: 145309588}
   m_Layer: 0
-  m_Name: Car
-  m_TagString: Untagged
+  m_Name: Cat
+  m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHungry: 0
-  isD: 0
+  isThirsty: 0
 --- !u!4 &145309589
 Transform:
   m_ObjectHideFlags: 0
@@ -174,9 +174,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 546028649}
-  - component: {fileID: 546028648}
   - component: {fileID: 546028650}
   - component: {fileID: 546028651}
+  - component: {fileID: 546028648}
   m_Layer: 0
   m_Name: CareTakerLogic
   m_TagString: CareTakerLogic
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06137ce8b9467734cbb7d63c393d70a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cars: []
+  Cats: []
 --- !u!4 &546028649
 Transform:
   m_ObjectHideFlags: 0
@@ -246,12 +246,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 8d8005f1b97e806468dd6379ab602a12, type: 2}
+    - {fileID: 11400000, guid: 9c4c0dbe74ed4d94d9685268ac3d821a, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 546028648}
           m_TargetAssemblyTypeName: LogicScript, Assembly-CSharp
           m_MethodName: SetCatHungry
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 546028648}
+          m_TargetAssemblyTypeName: LogicScript, Assembly-CSharp
+          m_MethodName: SetCatThirsty
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

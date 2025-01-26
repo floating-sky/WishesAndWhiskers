@@ -21,25 +21,25 @@ public class BowlsScipt : MonoBehaviour
         if(inTrigger && Input.GetMouseButtonUp(0))
         {
             // food
-            if (inputObject.gameObject.layer == 3 && !getFood())
+            if (inputObject.gameObject.layer == 3 && !GetFood())
             {
                 print("food");
             }
 
             // water
-            if(inputObject.gameObject.layer == 4 && !getWater())
+            if(inputObject.gameObject.layer == 4 && !GetWater())
             {
                 print("water");
             }
         }
     }
 
-    private Boolean getFood()
+    private Boolean GetFood()
     {
         return hasFood;
     }
 
-    private Boolean getWater()
+    private Boolean GetWater()
     {
         return hasWater;
     }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bowls
   - CareTakerLogic
+  - Cat
   layers:
   - Default
   - TransparentFX

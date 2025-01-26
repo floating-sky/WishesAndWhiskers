@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class FoodScript : MonoBehaviour
+public class WaterScript : MonoBehaviour
 {
     public float xPosition;
     public float yPosition;
@@ -31,7 +30,7 @@ public class FoodScript : MonoBehaviour
 
         if (isHit)
         {
-            if (Input.GetMouseButton(0))                                    // Drag the food, follow the mouse
+            if (Input.GetMouseButton(0))                                    // Drag the water, follow the mouse
             {
                 transform.position = worldPosition;
             }else if (Input.GetMouseButtonUp(0))                            // After mouse released

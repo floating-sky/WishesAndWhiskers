@@ -6,6 +6,8 @@ public class BowlsScipt : MonoBehaviour
     public LogicScript logicScript;
     private Boolean hasFood = false;
     private Boolean hasWater = false;
+    private Boolean inTrigger = false;
+    private Collider2D inputObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,7 +18,20 @@ public class BowlsScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(inTrigger && Input.GetMouseButtonUp(0))
+        {
+            // food
+            if (inputObject.gameObject.layer == 3 && !getFood())
+            {
+                print("food");
+            }
+
+            // water
+            if(inputObject.gameObject.layer == 4 && !getWater())
+            {
+                print("water");
+            }
+        }
     }
 
     private Boolean getFood()
@@ -29,23 +44,15 @@ public class BowlsScipt : MonoBehaviour
         return hasWater;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        print("This function is running");
-        if (Input.GetMouseButtonUp(0))
-        {
-            print("There is something on me");
-            // food
-            if (collision.gameObject.layer == 3 && !getFood())
-            {
-                print("food");
-            }
+        inTrigger = true;
+        inputObject = collision;
+    }
 
-            // water
-            if(collision.gameObject.layer == 6 && !getWater())
-            {
-                print("water");
-            }
-        }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        inTrigger = false;
+        inputObject = new Collider2D();
     }
 }

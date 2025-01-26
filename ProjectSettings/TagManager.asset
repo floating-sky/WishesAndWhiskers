@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bowls
+  - CareTakerLogic
   layers:
   - Default
   - TransparentFX

@@ -15,4 +15,8 @@ public class LogicScript : MonoBehaviour
     {
         
     }
+
+    public void SetCatHungry(){
+        print("runned");
+    }
 }

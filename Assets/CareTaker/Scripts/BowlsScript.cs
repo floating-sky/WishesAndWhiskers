@@ -27,7 +27,7 @@ public class BowlsScipt : MonoBehaviour
             }
 
             // water
-            if(inputObject.gameObject.layer == 4 && !GetWater())
+            if (inputObject.gameObject.layer == 4 && !GetWater())
             {
                 print("water");
             }

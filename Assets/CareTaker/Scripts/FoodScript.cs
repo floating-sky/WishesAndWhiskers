@@ -14,6 +14,8 @@ public class FoodScript : MonoBehaviour
     {
         Application.targetFrameRate = 60 * (int)Time.deltaTime;
         QualitySettings.vSyncCount = 10;
+        xPosition = transform.position.x;
+        yPosition = transform.position.y;
     }
 
     // Update is called once per frame

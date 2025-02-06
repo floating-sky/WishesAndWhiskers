@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class BarScript : MonoBehaviour
 {
-    public float FillSpeed;
+    public float increaseSpeed;
+    public float decreaseSpeed;
     private Slider bar;
-    private float targetProcess;
+    [SerializeField] private float targetProcess;
 
     private void Awake()
     {
@@ -16,20 +17,38 @@ public class BarScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        FillSpeed = 0.5f;
+        increaseSpeed = 0.4f;
+        decreaseSpeed = 0.05f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (bar.value < targetProcess)
+        {
+            bar.value += increaseSpeed * Time.deltaTime;
+        }
+
         if (bar.value > targetProcess)
         {
-            bar.value -= FillSpeed * Time.deltaTime;
+            bar.value -= decreaseSpeed * Time.deltaTime;
         }
+    }
+
+    public void IncreaseProgressBar(float value)
+    {
+        targetProcess = bar.value;
+        targetProcess += bar.value + value;
     }
 
     public void DecreaseProgressBar(float value)
     {
+        targetProcess = bar.value;
         targetProcess -= bar.value + value;
+    }
+
+    public float getValue()
+    {
+        return bar.value;
     }
 }

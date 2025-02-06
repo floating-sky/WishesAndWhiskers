@@ -260,6 +260,7 @@ MonoBehaviour:
   thirstyMeow: {fileID: 145309592}
   isHungry: 0
   isThirsty: 0
+  meowCount: 0
   isBusy: 0
   isDoingBehavior: 0
   moveRadius: 6
@@ -903,7 +904,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8848097223108574182, guid: 07a0650c253eee54998a81811f06f64a, type: 3}
+  m_Sprite: {fileID: -7443756053782179069, guid: 51bafb51485c9f848bb867aad38f1188, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -922,7 +923,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059340182}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.008726465, y: 0, z: 0, w: 0.999962}
   m_LocalPosition: {x: 3, y: 0, z: 0}
   m_LocalScale: {x: 0.9210435, y: 0.9249871, z: 0.9171}
   m_ConstrainProportionsScale: 0
@@ -930,7 +931,7 @@ Transform:
   - {fileID: 29415162}
   - {fileID: 1164129915}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1, y: 0, z: 0}
 --- !u!1 &1063916321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,8 +1527,8 @@ Transform:
   m_GameObject: {fileID: 1713523352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -308, y: -205, z: 0.027552458}
-  m_LocalScale: {x: 13, y: 13, z: 32.5}
+  m_LocalPosition: {x: -346, y: -219.14, z: 0.027552458}
+  m_LocalScale: {x: 10, y: 10, z: 25.000004}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 995812013}
@@ -1632,8 +1633,8 @@ Transform:
   m_GameObject: {fileID: 1741620511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.005247568, w: 0.99998623}
-  m_LocalPosition: {x: -411, y: -205, z: 0.027501678}
-  m_LocalScale: {x: 13, y: 13, z: 12.6789}
+  m_LocalPosition: {x: -420.03, y: -216.16, z: 0.027501678}
+  m_LocalScale: {x: 10, y: 10, z: 9.753001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 995812013}
@@ -1876,7 +1877,7 @@ GameObject:
   - component: {fileID: 1996220058}
   m_Layer: 5
   m_Name: Bar
-  m_TagString: Untagged
+  m_TagString: Bar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1965,7 +1966,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e71d7f5e8695e478b5c167e3c83a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FillSpeed: 0
+  increaseSpeed: 0
+  decreaseSpeed: 0
+  targetProcess: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

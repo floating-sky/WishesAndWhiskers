@@ -14,6 +14,7 @@ public class CatScript : MonoBehaviour
 
     public Boolean isHungry = false;
     public Boolean isThirsty = false;
+    public int meowCount = 0;
 
     // Cat is busy when they are doing an action that should not be interuptted
     public Boolean isBusy = false;
@@ -77,6 +78,7 @@ public class CatScript : MonoBehaviour
             int secondsToWait = 3;
             hungryMeow.Play();
             StartCoroutine(WaitForAnimation(secondsToWait));
+            meowCount++;
             print("Cat is meowing (HUNGRY)");
         }
     }
@@ -90,6 +92,7 @@ public class CatScript : MonoBehaviour
             int secondsToWait = 3;
             thirstyMeow.Play();
             StartCoroutine(WaitForAnimation(secondsToWait));
+            meowCount++;
             print("Cat is meowing (THIRSTY)");
         }
     }

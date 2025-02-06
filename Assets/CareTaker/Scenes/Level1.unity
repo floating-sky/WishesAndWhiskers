@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hungryMeow: {fileID: 145309593}
-  thirstyMeow: {fileID: 0}
+  thirstyMeow: {fileID: 145309592}
   isHungry: 0
   isThirsty: 0
   isBusy: 0

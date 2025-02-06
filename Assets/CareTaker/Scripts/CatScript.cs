@@ -70,7 +70,7 @@ public class CatScript : MonoBehaviour
 
     public void CatHungryBehavior() 
     {
-        if (!isBusy) 
+        if (!isBusy && !isDoingBehavior) 
         {
             isDoingBehavior = true;
             agent.isStopped = true;
@@ -83,7 +83,7 @@ public class CatScript : MonoBehaviour
 
     public void CatThirstyBehavior() 
     {
-        if (!isBusy)
+        if (!isBusy && !isDoingBehavior)
         {
             isDoingBehavior = true;
             agent.isStopped = true;

@@ -129,12 +129,12 @@ TextureImporter:
       name: quit_0
       rect:
         serializedVersion: 2
-        x: 356
-        y: 338
-        width: 347
-        height: 288
+        x: 357
+        y: 339
+        width: 345
+        height: 111
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a725d015c88d0a04da0ac155dc423378
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      quit_0: 5398283193359031274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

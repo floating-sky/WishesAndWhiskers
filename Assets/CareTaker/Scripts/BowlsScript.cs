@@ -75,6 +75,28 @@ public class BowlsScipt : MonoBehaviour
         return hasWater;
     }
 
+    private void SetFood(Boolean hasFood)
+    {
+        this.hasFood = hasFood;
+
+        // Cat has ate food
+        if(!hasFood)
+        {
+            logicScript.CatAteFoodORWater();
+        }
+    }
+
+    private void SetWater(Boolean hasWater)
+    {
+        this.hasWater = hasWater;
+
+        // Cat has drink water
+        if(!hasWater)
+        {
+            logicScript.CatAteFoodORWater();
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         inTrigger = true;

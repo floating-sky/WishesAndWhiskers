@@ -262,13 +262,13 @@ MonoBehaviour:
   isHungry: 0
   isThirsty: 0
   meowCount: 0
+  lastPos: {x: 0, y: 0, z: 0}
   isBusy: 0
   isDoingBehavior: 0
   moveRadius: 6
   hungryMeowInterval: 15
   thirstyMeowInterval: 15
   randomMovementInterval: 6
-  lastPos: {x: 0, y: 0, z: 0}
 --- !u!4 &145309589
 Transform:
   m_ObjectHideFlags: 0
@@ -1513,7 +1513,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 29, y: -20}
-  m_SizeDelta: {x: 448.34, y: 73.140015}
+  m_SizeDelta: {x: 448.34, y: 72.140015}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1602570840
 MonoBehaviour:
@@ -1747,21 +1747,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1713523357
-Transform:
+--- !u!224 &1713523357
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713523352}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -690.44995, y: -434.68, z: 0.03}
-  m_LocalScale: {x: 25.557608, y: 25.557608, z: 63.894028}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 63}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 995812013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 270, y: 105}
+  m_SizeDelta: {x: 4.4699707, y: 5.840088}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1741620511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,21 +1857,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1741620514
-Transform:
+--- !u!224 &1741620514
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741620511}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.005247568, w: 0.99998623}
-  m_LocalPosition: {x: -844, y: -427, z: 0.03}
-  m_LocalScale: {x: 25.557608, y: 25.557608, z: 24.926338}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 25, y: 25, z: 24}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 995812013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 115, y: 105}
+  m_SizeDelta: {x: 4.5599976, y: 5.76001}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1741620515
 BoxCollider2D:
   m_ObjectHideFlags: 0

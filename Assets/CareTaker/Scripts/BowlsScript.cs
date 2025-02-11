@@ -25,6 +25,7 @@ public class BowlsScipt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Add food or water to the bowl
         if (inTrigger && Input.GetMouseButtonUp(0))
         {
             // food

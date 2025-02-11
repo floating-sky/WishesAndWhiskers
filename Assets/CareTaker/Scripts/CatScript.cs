@@ -29,9 +29,14 @@ public class CatScript : MonoBehaviour
 
     NavMeshAgent agent;
 
+    Animator animator;
+
+    public Vector3 lastPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -42,7 +47,15 @@ public class CatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position != lastPos)
+        {
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
+        lastPos = transform.position;
     }
 
 

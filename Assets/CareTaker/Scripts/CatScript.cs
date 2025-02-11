@@ -15,8 +15,9 @@ public class CatScript : MonoBehaviour
     public Boolean isHungry = false;
     public Boolean isThirsty = false;
     public int meowCount = 0;
+    public Vector3 lastPos;
 
-    // Cat is busy when they are doing an action that should not be interuptted
+    // Cat is busy when they are doing an action that should not be interrupted
     public Boolean isBusy = false;
 
     // Cat is expressing a need through behavior. Used so that random movement doesn't interupt cat during behavior animation, but other actions CAN interupt
@@ -28,10 +29,8 @@ public class CatScript : MonoBehaviour
     public int randomMovementInterval = 6; // Seconds between each time the cat moves to a random location
 
     NavMeshAgent agent;
-
     Animator animator;
-
-    public Vector3 lastPos;
+    GameObject bowls;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -88,8 +87,9 @@ public class CatScript : MonoBehaviour
         {
             isDoingBehavior = true;
             agent.isStopped = true;
-            int secondsToWait = 3;
+            float secondsToWait = 1.5f;
             hungryMeow.Play();
+            animator.SetBool("isMeowing", true);
             StartCoroutine(WaitForAnimation(secondsToWait));
             meowCount++;
             print("Cat is meowing (HUNGRY)");
@@ -102,19 +102,21 @@ public class CatScript : MonoBehaviour
         {
             isDoingBehavior = true;
             agent.isStopped = true;
-            int secondsToWait = 3;
+            float secondsToWait = 1.5f;
             thirstyMeow.Play();
+            animator.SetBool("isMeowing", true);
             StartCoroutine(WaitForAnimation(secondsToWait));
             meowCount++;
             print("Cat is meowing (THIRSTY)");
         }
     }
 
-    IEnumerator WaitForAnimation(int seconds) 
+    IEnumerator WaitForAnimation(float seconds) 
     {
         yield return new WaitForSeconds(seconds);
         agent.isStopped = false;
         isDoingBehavior = false;
+        animator.SetBool("isMeowing", false);
     }
 
     public Boolean GetHungry()
@@ -161,4 +163,10 @@ public class CatScript : MonoBehaviour
             CancelInvoke("CatThirstyBehavior");
         }
     }
+
+    public void EatFood()
+    {
+        
+    }
+
 }

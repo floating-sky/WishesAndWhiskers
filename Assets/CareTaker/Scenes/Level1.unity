@@ -1619,6 +1619,8 @@ MonoBehaviour:
   yPosition: -4
   dragging: 0
   offset: {x: 0, y: 0, z: 0}
+  canvas: {fileID: 995812012}
+  isBack: 1
 --- !u!61 &1713523354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1802,6 +1804,8 @@ MonoBehaviour:
   yPosition: -4
   dragging: 0
   offset: {x: 0, y: 0, z: 0}
+  canvas: {fileID: 995812012}
+  isBack: 1
 --- !u!212 &1741620513
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1845,7 +1849,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -1045181238759104467, guid: e61835ed19ba1404490a71731878fe78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1874,7 +1878,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 115, y: 105}
-  m_SizeDelta: {x: 4.5599976, y: 5.76001}
+  m_SizeDelta: {x: 4.5600586, y: 5.76001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1741620515
 BoxCollider2D:

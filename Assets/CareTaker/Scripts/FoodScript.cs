@@ -8,6 +8,8 @@ public class FoodScript : MonoBehaviour
     public float yPosition;
     public Boolean dragging = false;
     public Vector3 offset;
+    public Canvas canvas;
+    [SerializeField] private Boolean isBack = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,10 +26,15 @@ public class FoodScript : MonoBehaviour
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
-        else
+        if(!isBack)
         {
-            transform.position = new Vector3(xPosition, yPosition, 0);
+            transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, 0);
+            isBack = true;
         }
+    }
+
+    public void setIsBack(Boolean value){
+        isBack = value;
     }
 
     private void OnMouseDown()
@@ -39,5 +46,6 @@ public class FoodScript : MonoBehaviour
     private void OnMouseUp()
     {
         dragging = false;
+        isBack = false;
     }
 }

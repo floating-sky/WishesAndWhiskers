@@ -90,6 +90,7 @@ public class BowlsScript : MonoBehaviour
         // Cat has ate food
         if(!hasFood)
         {
+            print("food run");
             logicScript.CatAteFoodORWater();
         }
     }
@@ -101,6 +102,7 @@ public class BowlsScript : MonoBehaviour
         // Cat has drink water
         if(!hasWater)
         {
+            print("water run");
             logicScript.CatAteFoodORWater();
         }
     }

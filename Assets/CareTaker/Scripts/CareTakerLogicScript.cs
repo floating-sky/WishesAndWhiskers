@@ -63,7 +63,7 @@ public class LogicScript : MonoBehaviour
         if(feedCount >= 2){
             Bar.isFeedTwice = true;
         }
-        Bar.IncreaseProgressBar(10);
+        Bar.IncreaseProgressBar(0.1f);
     }
 
     private void CheckCatsMeowCount()
@@ -71,8 +71,7 @@ public class LogicScript : MonoBehaviour
         foreach(CatScript cat in Cats){
             if(cat.meowCount >= 2)
             {
-                print("feed you cat!");
-                Bar.DecreaseProgressBar(1);
+                Bar.DecreaseProgressBar(0.01f);
             }
         }
     }

@@ -57,14 +57,12 @@ public class BarScript : MonoBehaviour
 
     public void IncreaseProgressBar(float value)
     {
-        targetProcess = bar.value;
-        targetProcess += bar.value + value;
+        targetProcess += value;
     }
 
     public void DecreaseProgressBar(float value)
     {
-        targetProcess = bar.value;
-        targetProcess -= bar.value + value;
+        targetProcess -= value;
     }
 
     public float getValue()

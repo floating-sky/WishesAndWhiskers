@@ -81,11 +81,13 @@ public class CatScript : MonoBehaviour
         if (isWalkingToFoodBowl)
         {
             isWalkingToFoodBowl = false;
+            SetHungry(false);
             bowls.GetComponent<BowlsScript>().SetFood(false);
         }
         else if (isWalkingToWaterBowl) 
         {
             isWalkingToWaterBowl = false;
+            SetThirsty(false);
             bowls.GetComponent<BowlsScript>().SetWater(false);
         }
         

@@ -8,6 +8,9 @@ TagManager:
   - CareTakerLogic
   - Cat
   - Bar
+  - CatLogic
+  - Sofa
+  - CatClimbing
   layers:
   - Default
   - TransparentFX

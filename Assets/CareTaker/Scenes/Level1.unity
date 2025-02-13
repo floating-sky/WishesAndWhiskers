@@ -243,7 +243,7 @@ GameObject:
   m_TagString: Cat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &145309588
 MonoBehaviour:
@@ -259,6 +259,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungryMeow: {fileID: 145309593}
   thirstyMeow: {fileID: 145309592}
+  bowls: {fileID: 1091975476}
+  isWalkingToBowl: 0
   isHungry: 0
   isThirsty: 0
   meowCount: 0
@@ -1201,6 +1203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logicScript: {fileID: 546028648}
+  cat: {fileID: 145309587}
   noFoodNoWater: {fileID: 21300000, guid: c7894e573e552f04cb79d8a4302f8e19, type: 3}
   foodNoWater: {fileID: 21300000, guid: 97ad62607b7951f40a528b53dafb116f, type: 3}
   noFoodWater: {fileID: 21300000, guid: 0340b00be462b3c47932f98207652ea5, type: 3}

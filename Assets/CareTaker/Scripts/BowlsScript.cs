@@ -1,18 +1,20 @@
 using System;
 using UnityEngine;
 
-public class BowlsScipt : MonoBehaviour
+public class BowlsScript : MonoBehaviour
 {
     public LogicScript logicScript;
     private Boolean hasFood = false;
     private Boolean hasWater = false;
     private Boolean inTrigger = false;
     private Collider2D inputObject;
+    [SerializeField] public GameObject cat;
 
     [SerializeField] private Sprite noFoodNoWater;                          // Bowls doesn't have food and water
     [SerializeField] private Sprite foodNoWater;                            // Bowls has food but doesn't have water
     [SerializeField] private Sprite noFoodWater;                            // Bowls doesn't have food but have water
     [SerializeField] private Sprite foodWater;                              // Bowls has food and water
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,6 +66,11 @@ public class BowlsScipt : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = noFoodNoWater;
             }
         }
+
+        if (hasFood)
+            cat.GetComponent<CatScript>().EatFood();
+        else if (hasWater)
+            cat.GetComponent<CatScript>().DrinkWater();
     }
 
     private Boolean GetFood()
@@ -76,7 +83,7 @@ public class BowlsScipt : MonoBehaviour
         return hasWater;
     }
 
-    private void SetFood(Boolean hasFood)
+    public void SetFood(Boolean hasFood)
     {
         this.hasFood = hasFood;
 
@@ -87,7 +94,7 @@ public class BowlsScipt : MonoBehaviour
         }
     }
 
-    private void SetWater(Boolean hasWater)
+    public void SetWater(Boolean hasWater)
     {
         this.hasWater = hasWater;
 

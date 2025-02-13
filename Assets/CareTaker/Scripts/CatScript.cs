@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class CatScript : MonoBehaviour
 {
@@ -12,10 +13,16 @@ public class CatScript : MonoBehaviour
     [SerializeField]
     public AudioSource thirstyMeow;
 
+    [SerializeField]
+    GameObject bowls;
+
+    private Boolean isWalkingToFoodBowl = false;
+    private Boolean isWalkingToWaterBowl = false;
     public Boolean isHungry = false;
     public Boolean isThirsty = false;
     public int meowCount = 0;
     public Vector3 lastPos;
+    private bool bowlIsDest;
 
     // Cat is busy when they are doing an action that should not be interrupted
     public Boolean isBusy = false;
@@ -30,7 +37,6 @@ public class CatScript : MonoBehaviour
 
     NavMeshAgent agent;
     Animator animator;
-    GameObject bowls;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +46,7 @@ public class CatScript : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        InvokeRepeating("MoveCatToRandomDestination", 1, randomMovementInterval);
+        InvokeRepeating("MoveCatToRandomDestination", 6f, randomMovementInterval);
     }
 
     // Update is called once per frame
@@ -55,8 +61,35 @@ public class CatScript : MonoBehaviour
             animator.SetBool("isWalking", false);
         }
         lastPos = transform.position;
+
+        if ((isWalkingToFoodBowl || isWalkingToWaterBowl) && bowlIsDest && Vector3.Distance(transform.position, agent.destination) <= 1) 
+        {
+            bowlIsDest = false;
+            print("REACHED DESTINATION");
+            agent.isStopped = true;
+            animator.SetBool("isEatingDrinking", true);
+            StartCoroutine(WaitForEatingDrinkingAnimation(4f));
+        }
     }
 
+    IEnumerator WaitForEatingDrinkingAnimation(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        agent.isStopped = false;
+        isBusy = false;
+        animator.SetBool("isEatingDrinking", false);
+        if (isWalkingToFoodBowl)
+        {
+            isWalkingToFoodBowl = false;
+            bowls.GetComponent<BowlsScript>().SetFood(false);
+        }
+        else if (isWalkingToWaterBowl) 
+        {
+            isWalkingToWaterBowl = false;
+            bowls.GetComponent<BowlsScript>().SetWater(false);
+        }
+        
+    }
 
     // Grabs a random point from the walkable area (within the given radius)
     public Vector3 GetRandomNavmeshLocation(float radius)
@@ -90,7 +123,7 @@ public class CatScript : MonoBehaviour
             float secondsToWait = 1.5f;
             hungryMeow.Play();
             animator.SetBool("isMeowing", true);
-            StartCoroutine(WaitForAnimation(secondsToWait));
+            StartCoroutine(WaitForMeowAnimation(secondsToWait));
             meowCount++;
             print("Cat is meowing (HUNGRY)");
         }
@@ -105,13 +138,13 @@ public class CatScript : MonoBehaviour
             float secondsToWait = 1.5f;
             thirstyMeow.Play();
             animator.SetBool("isMeowing", true);
-            StartCoroutine(WaitForAnimation(secondsToWait));
+            StartCoroutine(WaitForMeowAnimation(secondsToWait));
             meowCount++;
             print("Cat is meowing (THIRSTY)");
         }
     }
 
-    IEnumerator WaitForAnimation(float seconds) 
+    IEnumerator WaitForMeowAnimation(float seconds) 
     {
         yield return new WaitForSeconds(seconds);
         agent.isStopped = false;
@@ -166,7 +199,27 @@ public class CatScript : MonoBehaviour
 
     public void EatFood()
     {
-        
+        if (!isBusy && isHungry) 
+        {
+            isBusy = true;
+            isWalkingToFoodBowl = true;
+            Vector3 pos = bowls.transform.position;
+            pos.x = pos.x - .5f;
+            agent.SetDestination(pos);
+            bowlIsDest = true;
+        }
     }
 
+    public void DrinkWater() 
+    {
+        if (!isBusy && isThirsty)
+        {
+            isBusy = true;
+            isWalkingToWaterBowl = true;
+            Vector3 pos = bowls.transform.position;
+            pos.x = pos.x + .5f;
+            agent.SetDestination(pos);
+            bowlIsDest = true;
+        }
+    }
 }

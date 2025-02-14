@@ -20,15 +20,19 @@ public class WaterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Water follow the, else return to starting position
-        if (dragging)
+        // When level 1 start
+        if(!(Time.timeScale == 0f))
         {
+            // Water follow the, else return to starting position
+            if (dragging)
+            {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-        }
-        if(!isBack)
-        {
-            transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, 0);
-            isBack = true;
+            }
+            if(!isBack)
+            {
+                transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, 0);
+                isBack = true;
+            }
         }
     }
 

@@ -42,6 +42,7 @@ public class BarScript : MonoBehaviour
         if(bar.value == 1)
         {
             finishWindow.SetActive(true);
+            Time.timeScale = 0.0f;
         }
         else
         {
@@ -50,7 +51,7 @@ public class BarScript : MonoBehaviour
 
         // Fail Statement
         if(isFeedTwice && bar.value == 0){
-            print("Gameover");
+            Time.timeScale = 0.0f;
             Application.Quit();
         }
     }
@@ -62,7 +63,14 @@ public class BarScript : MonoBehaviour
 
     public void DecreaseProgressBar(float value)
     {
-        targetProcess -= value;
+        if(isFeedTwice)
+        {
+            targetProcess -= value;
+            if(targetProcess < 0)
+            {
+                targetProcess = 0;
+            }
+        }
     }
 
     public float getValue()

@@ -209,6 +209,7 @@ public class CatScript : MonoBehaviour
             pos.x = pos.x - .5f;
             agent.SetDestination(pos);
             bowlIsDest = true;
+            meowCount = 0;
         }
     }
 
@@ -222,6 +223,7 @@ public class CatScript : MonoBehaviour
             pos.x = pos.x + .5f;
             agent.SetDestination(pos);
             bowlIsDest = true;
+            meowCount = 0;
         }
     }
 }

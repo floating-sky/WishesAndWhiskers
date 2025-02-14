@@ -5,6 +5,7 @@ using UnityEngine;
 public class LogicScript : MonoBehaviour
 {
     public CatScript[] Cats;
+    public GameObject controlWindow;
     private BarScript Bar;
     private int feedCount;
 
@@ -21,6 +22,9 @@ public class LogicScript : MonoBehaviour
             Cats[ind] = gameObject.GetComponent<CatScript>();
             ind++;
         }
+
+        Time.timeScale = 0f;
+        controlWindow.SetActive(true);
     }
 
     // Update is called once per frame
@@ -63,7 +67,13 @@ public class LogicScript : MonoBehaviour
         if(feedCount >= 2){
             Bar.isFeedTwice = true;
         }
-        Bar.IncreaseProgressBar(0.1f);
+        Bar.IncreaseProgressBar(0.2f);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        controlWindow.SetActive(false);
     }
 
     private void CheckCatsMeowCount()

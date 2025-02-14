@@ -11,6 +11,7 @@ TagManager:
   - CatLogic
   - Sofa
   - CatClimbing
+  - Dialogue
   layers:
   - Default
   - TransparentFX

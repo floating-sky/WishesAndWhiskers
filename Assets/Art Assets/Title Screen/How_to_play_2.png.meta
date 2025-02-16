@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 63eaf921956185d4e8ed5b8856e581e3
+guid: 36ef322d6c642e64da2eb4286f38cc8b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 314725746338704250
-    second: dialogue_box_0
+      213: 6145752379332045206
+    second: How_to_play_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dialogue_box_0
+      name: How_to_play_2_0
       rect:
         serializedVersion: 2
-        x: 178
-        y: 102
-        width: 1120
-        height: 367
+        x: 49
+        y: 35
+        width: 917
+        height: 915
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a7b203816612e5400800000000000000
-      internalID: 314725746338704250
+      spriteID: 69929973a391a4550800000000000000
+      internalID: 6145752379332045206
       vertices: []
       indices: 
       edges: []

@@ -8,11 +8,14 @@ public class CatLogicScript : MonoBehaviour
     public GameObject dialogueObject;
     public TMP_Text text;
     public GameObject finishWindow;
+    public GameObject controlWindow;
+    public GameObject sofaEButton;
+    public GameObject catClimbingEButton;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
     [SerializeField] private int currentTasks;
     private int targetTasks;
-    private int countMouseClicked;
+    private int dialogueInd;
     private int itemNumber;
     private Boolean isAlreadyPlaySofa = false;
     private Boolean isAlreadyPlayCatClimbing = false;
@@ -24,31 +27,43 @@ public class CatLogicScript : MonoBehaviour
         targetTasks = 2;
         sofa = GameObject.FindGameObjectWithTag("Sofa").GetComponent<SofaScript>();
         catClimbing = GameObject.FindGameObjectWithTag("CatClimbing").GetComponent<CatClimbingScript>();
+
+        Time.timeScale = 0f;
+        controlWindow.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check does the cat has complete all the tasks
-        if(currentTasks >= targetTasks && !isDialogue)
-        {
-            finishWindow.SetActive(true);
+        // Start the game after the player closed the control window
+        if(!(Time.timeScale == 0f)){
+            // Check does the cat has complete all the tasks
+            if(currentTasks >= targetTasks && !isDialogue)
+            {
+                finishWindow.SetActive(true);
+            }
         }
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            countMouseClicked++;
-        }
-        
         if(isDialogue)
         {
-            dialogueTextProcess(itemNumber, countMouseClicked);
+            dialogueTextProcess();
         }
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        controlWindow.SetActive(false);
     }
 
     public void nextLevel()
     {
         Application.Quit();
+    }
+
+    public void nextDialogue()
+    {
+        dialogueInd++;
     }
 
     public void CatInteracted()
@@ -64,7 +79,7 @@ public class CatLogicScript : MonoBehaviour
             sofa.setIsAlreadyPlaySofa(true);
 
             // Dialogues
-            countMouseClicked = 0;
+            dialogueInd = 0;
             isDialogue = true;
             itemNumber = 0;
             Time.timeScale = 0f;
@@ -81,7 +96,7 @@ public class CatLogicScript : MonoBehaviour
             catClimbing.setIsAlreadyPlayCatClimbing(true);
 
             // Dialogues
-            countMouseClicked = 0;
+            dialogueInd = 0;
             isDialogue = true;
             itemNumber = 1;
             Time.timeScale = 0f;
@@ -91,12 +106,12 @@ public class CatLogicScript : MonoBehaviour
     // Text change by mouse clicked
     // Item number 0 = sofa
     // Item number 1 = cat climbing
-    private void dialogueTextProcess(int itemNumber, int mouseClicked)
+    private void dialogueTextProcess()
     {
         // sofa
         if(itemNumber == 0)
         {
-            switch(mouseClicked)
+            switch(dialogueInd)
             {
                 case 0:
                     dialogueObject.SetActive(true);
@@ -111,6 +126,7 @@ public class CatLogicScript : MonoBehaviour
                 case 3:
                     isDialogue = false;
                     dialogueObject.SetActive(false);
+                    sofaEButton.SetActive(false);
                     Time.timeScale = 1f;
                     break;
             }
@@ -119,7 +135,7 @@ public class CatLogicScript : MonoBehaviour
         // cat climbing
         if(itemNumber == 1)
         {
-            switch(mouseClicked)
+            switch(dialogueInd)
             {
                 case 0:
                     dialogueObject.SetActive(true);
@@ -134,6 +150,7 @@ public class CatLogicScript : MonoBehaviour
                 case 3:
                     isDialogue = false;
                     dialogueObject.SetActive(false);
+                    catClimbingEButton.SetActive(false);
                     Time.timeScale = 1f;
                     break;
             }

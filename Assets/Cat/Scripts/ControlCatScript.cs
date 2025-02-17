@@ -14,29 +14,32 @@ public class ControlCatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Movement keyboard inputs
-        if(Input.GetKey(KeyCode.W))                         // Top
-        {
-            rb.AddForce(Vector3.up * 5);
-        }
-        if(Input.GetKey(KeyCode.A))                         // Left
-        {
-            rb.AddForce(Vector3.left * 5);
-        }
-        if(Input.GetKey(KeyCode.S))                         // Down
-        {
-            rb.AddForce(Vector3.down * 5);
-        }
-        if(Input.GetKey(KeyCode.D))                         // Right
-        {
-            rb.AddForce(Vector3.right * 5);
-        }
-        rb.linearVelocity = new Vector2(0, 0);
+        // Start the control movement after the player closed the control window
+        if(!(Time.timeScale == 0f)){
+            // Movement keyboard inputs
+            if(Input.GetKey(KeyCode.W))                         // Top
+            {
+                rb.AddForce(Vector3.up * 5);
+            }
+            if(Input.GetKey(KeyCode.A))                         // Left
+            {
+                rb.AddForce(Vector3.left * 5);
+            }
+            if(Input.GetKey(KeyCode.S))                         // Down
+            {
+                rb.AddForce(Vector3.down * 5);
+            }
+            if(Input.GetKey(KeyCode.D))                         // Right
+            {
+                rb.AddForce(Vector3.right * 5);
+            }
+            rb.linearVelocity = new Vector2(0, 0);
 
-        // Interact keyboard inputs
-        if(Input.GetKey(KeyCode.E))                         // Interact items
-        {
-            catLogic.CatInteracted();
+            // Interact keyboard inputs
+            if(Input.GetKey(KeyCode.E))                         // Interact items
+            {
+                catLogic.CatInteracted();
+            }
         }
     }
 }

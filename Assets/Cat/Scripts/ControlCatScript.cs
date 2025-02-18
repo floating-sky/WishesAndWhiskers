@@ -7,24 +7,25 @@ public class ControlCatScript : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private CatLogicScript catLogic;
     [SerializeField] private SpriteRenderer background;
-    public InputAction MoveAction;
-    public float cameraMoveSpeed = 5f;
+    private Vector2 moveInput;
+    private Animator animator;
+
+    public float cameraMoveSpeed = 10f;
     private float bgMinX, bgMaxX, bgMinY, bgMaxY;
-
-    private void Awake()
-    {
-        bgMinX = background.transform.position.x - background.bounds.size.x / 2f;
-        bgMaxX = background.transform.position.x + background.bounds.size.x / 2f;
-
-        bgMinY = background.transform.position.y - background.bounds.size.y / 2f;
-        bgMaxY = background.transform.position.y + background.bounds.size.y / 2f;
-    }
+    private float screenRightBoundary, screenLeftBoundary;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bgMinX = background.transform.position.x - background.bounds.size.x / 2f;
+        bgMaxX = background.transform.position.x + background.bounds.size.x / 2f;
+        bgMinY = background.transform.position.y - background.bounds.size.y / 2f;
+        bgMaxY = background.transform.position.y + background.bounds.size.y / 2f;
+        screenRightBoundary = Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x;
+        screenLeftBoundary = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x;
+
         catLogic = GameObject.FindGameObjectWithTag("CatLogic").GetComponent<CatLogicScript>();
-        MoveAction.Enable();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,8 +33,7 @@ public class ControlCatScript : MonoBehaviour
     {
         // Start the control movement after the player closed the control window
         if(!(Time.timeScale == 0f)){
-            Vector2 move = MoveAction.ReadValue<Vector2>();
-            Vector2 position = (Vector2)transform.position + move * 3.0f * Time.deltaTime;
+            Vector2 position = (Vector2)transform.position + moveInput * 3.0f * Time.deltaTime;
             transform.position = position;
 
             // Interact keyboard inputs
@@ -43,18 +43,12 @@ public class ControlCatScript : MonoBehaviour
             }
         }
 
-
-        float screenRightBoundary = Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x;
-        float screenLeftBoundary = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x;
-
         if (transform.position.x > screenRightBoundary - 2f)
         {
             // Move camera right
             cam.transform.position = ClampCamera(cam.transform.position + new Vector3(cameraMoveSpeed * Time.deltaTime, 0, 0));
         }
-
         else if (transform.position.x < screenLeftBoundary + 2f)
-
         {
             // Move camera left
             cam.transform.position = ClampCamera(cam.transform.position - new Vector3(cameraMoveSpeed * Time.deltaTime, 0, 0));
@@ -75,5 +69,19 @@ public class ControlCatScript : MonoBehaviour
         float newY = Mathf.Clamp(targetPosition.y, minY, maxY);
 
         return new Vector3(newX, newY, targetPosition.z);
+    }
+
+    public void Move(InputAction.CallbackContext context) 
+    {
+        animator.SetBool("isWalking", true);
+        if (context.canceled) 
+        {
+            animator.SetBool("isWalking", false);
+            animator.SetFloat("LastInputX", moveInput.x);
+            animator.SetFloat("LastInputY", moveInput.y);
+        }
+        moveInput = context.ReadValue<Vector2>();
+        animator.SetFloat("InputX", moveInput.x);
+        animator.SetFloat("InputY", moveInput.y);
     }
 }

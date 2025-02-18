@@ -720,8 +720,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e23701baf0f2ef4fa80aad043a49b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 367419227}
+  cam: {fileID: 218679824}
   catLogic: {fileID: 775765113}
+  background: {fileID: 854635538}
+  MoveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f5d054a4-71e3-43ae-90ed-1ff659cd4d77
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: b4b1cf8b-5e7e-4bea-bdfe-26580f9ecf97
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: a9d0855a-0ea9-4e09-884d-ebdadc110da6
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 493601b9-c67c-4b4b-92fd-be474c87fe19
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: e61fea35-c7f4-4c22-8af9-8260fe692854
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: b22c2423-01a7-4dae-93a3-3fe094d5b5c0
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  cameraMoveSpeed: 2
 --- !u!1 &452722761
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,8 +931,6 @@ MonoBehaviour:
   sofa: {fileID: 1919288313}
   catClimbing: {fileID: 1313738429}
   currentTasks: 0
-  dialogueInd: 0
-  itemNumber: 0
 --- !u!4 &775765114
 Transform:
   m_ObjectHideFlags: 0
@@ -897,6 +946,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &854635538 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1536759697179314495, guid: e15c220ae18cfc44398eaca9be8906a5, type: 3}
+  m_PrefabInstance: {fileID: 332563155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &925621121
 GameObject:
   m_ObjectHideFlags: 0

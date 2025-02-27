@@ -44,9 +44,10 @@ public class CatLogicScript : MonoBehaviour
             }
         }
 
-        if(isDialogue)
+        if(isDialogue && Input.GetKeyDown(KeyCode.E))
         {
             dialogueTextProcess();
+            dialogueInd++;
         }
     }
 
@@ -59,11 +60,6 @@ public class CatLogicScript : MonoBehaviour
     public void nextLevel()
     {
         Application.Quit();
-    }
-
-    public void nextDialogue()
-    {
-        dialogueInd++;
     }
 
     public void CatInteracted()

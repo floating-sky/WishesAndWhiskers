@@ -12,6 +12,7 @@ TagManager:
   - Sofa
   - CatClimbing
   - Dialogue
+  - Sponge
   layers:
   - Default
   - TransparentFX

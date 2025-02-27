@@ -44,7 +44,7 @@ public class CatLogicScript : MonoBehaviour
             }
         }
 
-        if(isDialogue && Input.GetKeyDown(KeyCode.E))
+        if(isDialogue && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)) )
         {
             dialogueTextProcess();
             dialogueInd++;

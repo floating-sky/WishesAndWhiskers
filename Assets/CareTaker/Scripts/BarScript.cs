@@ -27,7 +27,7 @@ public class BarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bar.value < targetProcess)
+        if (bar.value <= targetProcess)
         {
             bar.value += increaseSpeed * Time.deltaTime;
         }
@@ -37,22 +37,22 @@ public class BarScript : MonoBehaviour
             bar.value -= decreaseSpeed * Time.deltaTime;
         }
 
-        // Next Level
-        if(bar.value == 1)
-        {
-            finishWindow.SetActive(true);
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            finishWindow.SetActive(false);
-        }
+        //// Next Level
+        //if(bar.value == 1)
+        //{
+        //    finishWindow.SetActive(true);
+        //    Time.timeScale = 0.0f;
+        //}
+        //else
+        //{
+        //    finishWindow.SetActive(false);
+        //}
 
-        // Fail Statement
-        if(isFeedTwice && bar.value == 0){
-            Time.timeScale = 0.0f;
-            Application.Quit();
-        }
+        //// Fail Statement
+        //if(isFeedTwice && bar.value == 0){
+        //    Time.timeScale = 0.0f;
+        //    Application.Quit();
+        //}
     }
 
     public void IncreaseProgressBar(float value)

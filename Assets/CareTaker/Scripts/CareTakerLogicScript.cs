@@ -6,33 +6,51 @@ public class LogicScript : MonoBehaviour
 {
     public CatScript[] Cats;
     public GameObject controlWindow;
+    public GameObject finishWindow;
     private BarScript Bar;
     private int feedCount;
+    [SerializeField] private int currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Setting
         int ind = 0;
         feedCount = 0;
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cat");
         Cats = new CatScript[gameObjects.Length];
         Bar = GameObject.FindGameObjectWithTag("Bar").GetComponent<BarScript>();
 
+        // Getting all the cats
         foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Cat")){
             Cats[ind] = gameObject.GetComponent<CatScript>();
             ind++;
         }
 
+        // Show up control window
         Time.timeScale = 0f;
         controlWindow.SetActive(true);
+
+        // Start at level 1
+        currentLevel = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Bar.getValue() > 1.0)
+        // Next Level
+        if(Bar.getValue() >= 1.0)
         {
             print("Level 1 passed!");
+            finishWindow.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+
+        if(Bar.getValue() < 0.0 && Bar.isFeedTwice)
+        {
+            print("Level 1 fail");
+            Time.timeScale = 0.0f;
+            Application.Quit();
         }
 
         // Check all the cats meow is up to 2 then decrease the process bar

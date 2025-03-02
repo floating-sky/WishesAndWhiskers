@@ -1,16 +1,17 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LogicScript : MonoBehaviour
 {
     public CatScript[] Cats;
     public GameObject controlWindow;
     public GameObject finishWindow;
+    public GameObject Sponge;
+    [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
     private int feedCount;
-    [SerializeField] private int currentLevel;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,8 +32,13 @@ public class LogicScript : MonoBehaviour
         Time.timeScale = 0f;
         controlWindow.SetActive(true);
 
-        // Start at level 1
-        currentLevel = 0;
+        // Setting of Level 2
+        if(currentLevel == 2)
+        {
+            Sponge.SetActive(true);
+        }
+
+        print("currentLevel: " + currentLevel);
     }
 
     // Update is called once per frame
@@ -86,6 +92,11 @@ public class LogicScript : MonoBehaviour
             Bar.isFeedTwice = true;
         }
         Bar.IncreaseProgressBar(0.2f);
+    }
+
+    public void NextLevelButton()
+    {
+        SceneManager.LoadSceneAsync(2);
     }
 
     public void Resume()

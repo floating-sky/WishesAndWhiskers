@@ -2069,7 +2069,6 @@ GameObject:
   - component: {fileID: 1574478054}
   - component: {fileID: 1574478053}
   - component: {fileID: 1574478052}
-  - component: {fileID: 1574478051}
   m_Layer: 0
   m_Name: 'Bowls '
   m_TagString: Untagged
@@ -2077,24 +2076,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1574478051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574478050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb231dad2110c25498f37f329b64cf32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logicScript: {fileID: 0}
-  cat: {fileID: 0}
-  noFoodNoWater: {fileID: 21300000, guid: c7894e573e552f04cb79d8a4302f8e19, type: 3}
-  foodNoWater: {fileID: 21300000, guid: 97ad62607b7951f40a528b53dafb116f, type: 3}
-  noFoodWater: {fileID: 21300000, guid: 0340b00be462b3c47932f98207652ea5, type: 3}
-  foodWater: {fileID: 21300000, guid: 532445a9e5d7f134ebf376f82671539c, type: 3}
 --- !u!61 &1574478052
 BoxCollider2D:
   m_ObjectHideFlags: 0

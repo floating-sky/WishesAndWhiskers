@@ -36,23 +36,6 @@ public class BarScript : MonoBehaviour
         {
             bar.value -= decreaseSpeed * Time.deltaTime;
         }
-
-        //// Next Level
-        //if(bar.value == 1)
-        //{
-        //    finishWindow.SetActive(true);
-        //    Time.timeScale = 0.0f;
-        //}
-        //else
-        //{
-        //    finishWindow.SetActive(false);
-        //}
-
-        //// Fail Statement
-        //if(isFeedTwice && bar.value == 0){
-        //    Time.timeScale = 0.0f;
-        //    Application.Quit();
-        //}
     }
 
     public void IncreaseProgressBar(float value)

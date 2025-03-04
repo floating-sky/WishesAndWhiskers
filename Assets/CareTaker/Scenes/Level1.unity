@@ -762,11 +762,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06137ce8b9467734cbb7d63c393d70a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level1: {fileID: 0}
+  level2: {fileID: 0}
   Cats: []
   controlWindow: {fileID: 332196973}
   finishWindow: {fileID: 1958294683}
   spongeWindow: {fileID: 2074765757}
   Sponge: {fileID: 666978274}
+  timeline: {fileID: 546028650}
 --- !u!4 &546028649
 Transform:
   m_ObjectHideFlags: 0
@@ -791,13 +794,15 @@ PlayableDirector:
   m_GameObject: {fileID: 546028647}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 0523c103bf0ee9e41aa74c9d59b29fc1, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: d77bf62c59bfdbc44a7d5e2b393f9955, type: 2}
   m_InitialState: 1
   m_WrapMode: 1
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 4188439072842144813, guid: 0523c103bf0ee9e41aa74c9d59b29fc1, type: 2}
+    value: {fileID: 546028651}
+  - key: {fileID: 4188439072842144813, guid: d77bf62c59bfdbc44a7d5e2b393f9955, type: 2}
     value: {fileID: 546028651}
   m_ExposedReferences:
     m_References: []
@@ -940,7 +945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &666978275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1903,7 +1908,7 @@ RectTransform:
   m_Father: {fileID: 1025160474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1962,7 +1967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1647004922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2243,7 +2248,7 @@ RectTransform:
   m_Father: {fileID: 215167654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2.5299835, y: 0}
   m_SizeDelta: {x: 5.06, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

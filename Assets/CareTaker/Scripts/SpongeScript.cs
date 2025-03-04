@@ -15,6 +15,7 @@ public class SpongeScript : MonoBehaviour
     {
         xPosition = transform.position.x;
         yPosition = transform.position.y;
+        transform.position = new Vector3(xPosition, yPosition, 0);
     }
 
     // Update is called once per frame

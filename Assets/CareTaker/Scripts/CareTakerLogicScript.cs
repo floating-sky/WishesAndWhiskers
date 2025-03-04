@@ -1,15 +1,21 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 
 public class LogicScript : MonoBehaviour
 {
+    public TimelineAsset level1;
+    public TimelineAsset level2;
+
     public CatScript[] Cats;
     public GameObject controlWindow;
     public GameObject finishWindow;
     public GameObject spongeWindow;
     public GameObject Sponge;
+    public PlayableDirector timeline;
     [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
     private int feedCount;
@@ -19,6 +25,7 @@ public class LogicScript : MonoBehaviour
         // Setting
         int ind = 0;
         feedCount = 0;
+        timeline.playableAsset = level1;
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cat");
         Cats = new CatScript[gameObjects.Length];
         Bar = GameObject.FindGameObjectWithTag("Bar").GetComponent<BarScript>();
@@ -37,6 +44,7 @@ public class LogicScript : MonoBehaviour
         if(currentLevel == 2)
         {
             Sponge.SetActive(true);
+            timeline.playableAsset = level2;
         }
 
         print("currentLevel: " + currentLevel);

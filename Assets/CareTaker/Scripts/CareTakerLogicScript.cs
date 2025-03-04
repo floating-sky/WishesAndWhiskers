@@ -8,6 +8,7 @@ public class LogicScript : MonoBehaviour
     public CatScript[] Cats;
     public GameObject controlWindow;
     public GameObject finishWindow;
+    public GameObject spongeWindow;
     public GameObject Sponge;
     [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
@@ -103,6 +104,11 @@ public class LogicScript : MonoBehaviour
     {
         Time.timeScale = 1f;
         controlWindow.SetActive(false);
+    }
+
+    public void spongeLogic()
+    {
+        spongeWindow.SetActive(true);
     }
 
     private void CheckCatsMeowCount()

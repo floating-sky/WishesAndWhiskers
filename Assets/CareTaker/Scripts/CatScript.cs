@@ -22,6 +22,9 @@ public class CatScript : MonoBehaviour
     public Boolean isThirsty = false;
     public int meowCount = 0;
     public Vector3 lastPos;
+    public LogicScript logicScript;
+    private Boolean inTrigger = false;              // Is anything on the cat
+    private Collider2D inputObject;                 // the object on the cat
     private bool bowlIsDest;
 
     // Cat is busy when they are doing an action that should not be interrupted
@@ -47,6 +50,7 @@ public class CatScript : MonoBehaviour
         agent.updateUpAxis = false;
 
         InvokeRepeating("MoveCatToRandomDestination", 6f, randomMovementInterval);
+        logicScript = GameObject.FindGameObjectWithTag("CareTakerLogic").GetComponent<LogicScript>();
     }
 
     // Update is called once per frame
@@ -69,6 +73,24 @@ public class CatScript : MonoBehaviour
             agent.isStopped = true;
             animator.SetBool("isEatingDrinking", true);
             StartCoroutine(WaitForEatingDrinkingAnimation(4f));
+        }
+        if(inTrigger){
+            print("statement 1");
+        }
+
+        if(Input.GetMouseButtonUp(0)){
+            print("statement 2");
+        }
+
+        // Wash the cat with sponge
+        if (inTrigger && Input.GetMouseButtonUp(0))
+        {
+            // Check the input object is sponge
+            if (inputObject.gameObject.layer == 7)
+            {
+                print("sponge");
+                logicScript.spongeLogic();
+            }
         }
     }
 
@@ -225,5 +247,17 @@ public class CatScript : MonoBehaviour
             bowlIsDest = true;
             meowCount = 0;
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        inTrigger = true;
+        inputObject = collision;
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        inTrigger = false;
+        inputObject = new Collider2D();
     }
 }

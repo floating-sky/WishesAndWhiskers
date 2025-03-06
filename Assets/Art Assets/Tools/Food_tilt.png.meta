@@ -310,7 +310,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Food_tilt_0: 382618858094096560
+      Food_tilt_1: -8756362769698304628
+      Food_tilt_2: -2940353811082956861
+      Food_tilt_3: 2174054704788869725
+      Food_tilt_4: -3557124435154017723
+      Food_tilt_5: 3178148461558570166
+      Food_tilt_6: -816080705713163735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

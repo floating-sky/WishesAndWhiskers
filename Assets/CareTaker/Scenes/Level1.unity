@@ -2774,9 +2774,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8245282002267798927, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8653250179245677048, guid: 326043365b306e34ea9d52f333286fca, type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922959334250365714, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7683627896459356746, guid: b45f206c378dd00409f83eee6db99162, type: 3}
+    - target: {fileID: 8923773968452202862, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: m_text
+      value: Day 1 complete!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

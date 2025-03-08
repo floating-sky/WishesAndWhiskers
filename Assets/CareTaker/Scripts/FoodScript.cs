@@ -11,6 +11,8 @@ public class FoodScript : MonoBehaviour
     public Vector3 offset;
     public Canvas canvas;
     [SerializeField] private Boolean isBack = true;
+    [SerializeField] private Sprite food;
+    [SerializeField] private Sprite dropingFood;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +43,16 @@ public class FoodScript : MonoBehaviour
 
     public void setIsBack(Boolean value){
         isBack = value;
+    }
+
+    public void changeFood()
+    {
+        GetComponent<SpriteRenderer>().sprite = food;
+    }
+
+    public void changeDropingFood()
+    {
+        GetComponent<SpriteRenderer>().sprite = dropingFood;
     }
 
     private void OnMouseDown()

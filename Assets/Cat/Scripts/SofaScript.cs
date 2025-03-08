@@ -4,6 +4,8 @@ using UnityEngine;
 public class SofaScript : MonoBehaviour
 {
     [SerializeField] public Boolean inTrigger = false;
+    [SerializeField] private Sprite damagedSofa;
+    [SerializeField] private Sprite newSofa;
     public GameObject eButton;
     private Boolean isAlreadyPlaySofa;
 
@@ -22,6 +24,16 @@ public class SofaScript : MonoBehaviour
     public void setIsAlreadyPlaySofa(Boolean value)
     {
         isAlreadyPlaySofa = value;
+    }
+
+    public void changeDamageSofa()
+    {
+        GetComponent<SpriteRenderer>().sprite = damagedSofa;
+    }
+
+    public void changeNewSofa()
+    {
+        GetComponent<SpriteRenderer>().sprite = newSofa;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

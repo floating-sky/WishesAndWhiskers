@@ -4,6 +4,8 @@ using UnityEngine;
 public class BowlsScript : MonoBehaviour
 {
     public LogicScript logicScript;
+    public FoodScript foodScript;
+    public WaterScript waterScript;
     private Boolean hasFood = false;
     private Boolean hasWater = false;
     private Boolean inTrigger = false;
@@ -27,20 +29,30 @@ public class BowlsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Add food or water to the bowl
-        if (inTrigger && Input.GetMouseButtonUp(0))
+        // Change the visual cue for food and water, and add food and water to the bowls
+        if(inTrigger)
         {
             // food
-            if (inputObject.gameObject.layer == 3 && !GetFood())
+            if (inputObject.gameObject.layer == 3)
             {
-                hasFood = true;
+                foodScript.changeDropingFood();                                 // visual cue change for food
+                if(Input.GetMouseButtonUp(0) && !GetFood())                     // if mouse released and bowl doesn't have food, add food 
+                {
+                    hasFood = true;
+                }
             }
-
             // water
-            if (inputObject.gameObject.layer == 4 && !GetWater())
+            if (inputObject.gameObject.layer == 4)
             {
-                hasWater = true;
+                waterScript.changeDropingWater();                               // visual cue change for water
+                if(Input.GetMouseButtonUp(0) && !GetWater())                    // if mouse released and bowl doesn't have water, add water
+                {
+                    hasWater = true;
+                }
             }
+        }else{
+            foodScript.changeFood();                                            // change the food back to normal
+            waterScript.changeWater();                                          // change the water back to normal
         }
 
         // Check the bowls has food or water, the image change

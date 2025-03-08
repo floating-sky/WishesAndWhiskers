@@ -10,6 +10,8 @@ public class WaterScript : MonoBehaviour
     public Vector3 offset;
     public Canvas canvas;
     [SerializeField] private Boolean isBack = true;
+    [SerializeField] private Sprite water;
+    [SerializeField] private Sprite dropingWater;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,6 +38,16 @@ public class WaterScript : MonoBehaviour
                 isBack = true;
             }
         }
+    }
+
+    public void changeWater()
+    {
+        GetComponent<SpriteRenderer>().sprite = water;
+    }
+
+    public void changeDropingWater()
+    {
+        GetComponent<SpriteRenderer>().sprite = dropingWater;
     }
 
     private void OnMouseDown()

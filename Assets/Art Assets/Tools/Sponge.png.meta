@@ -143,7 +143,7 @@ TextureImporter:
         width: 199
         height: 198
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,7 +165,7 @@ TextureImporter:
         width: 73
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,7 +187,7 @@ TextureImporter:
         width: 443
         height: 428
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,7 +209,7 @@ TextureImporter:
         width: 100
         height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -222,11 +222,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Sponge_4
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 133
+        width: 665
+        height: 756
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d296cf3cd1db04c8781fb6c693e470
+      internalID: 904633911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 21b7b35c54f901d4f9d3bb7b0c31691c
     internalID: 0
     vertices: []
     indices: 
@@ -240,6 +262,7 @@ TextureImporter:
       Sponge_1: 6429685743730394787
       Sponge_2: 486807238909174913
       Sponge_3: 1340304671573410284
+      Sponge_4: 904633911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

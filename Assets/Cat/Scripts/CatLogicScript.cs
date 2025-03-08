@@ -128,6 +128,7 @@ public class CatLogicScript : MonoBehaviour
                     isDialogue = false;
                     dialogueObject.SetActive(false);
                     sofaEButton.SetActive(false);
+                    sofa.changeDamageSofa();
                     Time.timeScale = 1f;
                     break;
             }

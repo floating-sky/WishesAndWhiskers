@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 87189483}
   - component: {fileID: 87189482}
   - component: {fileID: 87189481}
-  - component: {fileID: 87189480}
   m_Layer: 0
   m_Name: Sofa
   m_TagString: Sofa
@@ -242,20 +241,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &87189480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87189479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb41095fd6807d94b99a00d8a2463d65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inTrigger: 0
-  eButton: {fileID: 0}
 --- !u!212 &87189481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -656,6 +641,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 332196973}
   m_CullTransparentMesh: 1
+--- !u!114 &364167092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7822085060934960006, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+  m_PrefabInstance: {fileID: 5505482006922046967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f76ef9d999431f408a46aba43ca0412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &417743732
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,8 +958,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 496, y: 105}
-  m_SizeDelta: {x: 4.4699707, y: 5.840088}
+  m_AnchoredPosition: {x: 509, y: 111}
+  m_SizeDelta: {x: 6.81, y: 8.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666978276
 MonoBehaviour:
@@ -979,6 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xPosition: 0
   yPosition: 0
+  zPosition: 0
   dragging: 0
   offset: {x: 0, y: 0, z: 0}
   canvas: {fileID: 5505482006922046968}
@@ -1021,13 +1018,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.69, y: 6.36}
+    oldSize: {x: 6.65, y: 7.56}
     newSize: {x: 4.08, y: 4.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5.44, y: 6.96}
+  m_Size: {x: 6.91, y: 8.29}
   m_EdgeRadius: 0
 --- !u!50 &666978278
 Rigidbody2D:
@@ -1100,7 +1097,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 6019559663143269092, guid: fe0b4a9589708dc4489e1e2ab932d359, type: 3}
+  m_Sprite: {fileID: 904633911, guid: ceee168f202692d4bb64f474cc158865, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1497,6 +1494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   logicScript: {fileID: 546028648}
+  foodScript: {fileID: 1941149663}
+  waterScript: {fileID: 364167092}
   cat: {fileID: 145309587}
   noFoodNoWater: {fileID: 21300000, guid: c7894e573e552f04cb79d8a4302f8e19, type: 3}
   foodNoWater: {fileID: 21300000, guid: 97ad62607b7951f40a528b53dafb116f, type: 3}
@@ -2290,6 +2289,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909656630}
   m_CullTransparentMesh: 1
+--- !u!114 &1941149663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7690791255838012014, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+  m_PrefabInstance: {fileID: 5505482006922046967}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c474b7383e0ef742a38db45800c4e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1958294683 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8245282002267798927, guid: 326043365b306e34ea9d52f333286fca, type: 3}
@@ -2744,6 +2754,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 312
       objectReference: {fileID: 0}
+    - target: {fileID: 7690791255838012014, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: food
+      value: 
+      objectReference: {fileID: -1045181238759104467, guid: e61835ed19ba1404490a71731878fe78, type: 3}
+    - target: {fileID: 7690791255838012014, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: dropingFood
+      value: 
+      objectReference: {fileID: -8756362769698304628, guid: 6f6d15cdc19a11e42a26d6e9c8149645, type: 3}
+    - target: {fileID: 7822085060934960006, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: water
+      value: 
+      objectReference: {fileID: 6049605792901559095, guid: 91195ec34066b864188626bd4e66442c, type: 3}
+    - target: {fileID: 7822085060934960006, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: dropingWater
+      value: 
+      objectReference: {fileID: 7118402872581587510, guid: 98b5c83a017afde4ab376a553ae682d1, type: 3}
     - target: {fileID: 7980994976799221079, guid: 326043365b306e34ea9d52f333286fca, type: 3}
       propertyPath: m_Name
       value: Canvas

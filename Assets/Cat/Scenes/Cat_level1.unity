@@ -3040,6 +3040,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inTrigger: 0
+  damagedSofa: {fileID: 8007478242427220901, guid: 6ca3d989eb3703a4e9c0c936ede7058a, type: 3}
+  newSofa: {fileID: -705067186387164552, guid: 95730446b29007440b11c107a114019d, type: 3}
   eButton: {fileID: 1840253903}
 --- !u!1 &1992849501
 GameObject:

@@ -6,6 +6,7 @@ public class FoodScript : MonoBehaviour
 {
     public float xPosition;
     public float yPosition;
+    public float zPosition;
     public Boolean dragging = false;
     public Vector3 offset;
     public Canvas canvas;
@@ -16,6 +17,7 @@ public class FoodScript : MonoBehaviour
     {
         xPosition = transform.position.x;
         yPosition = transform.position.y;
+        zPosition = transform.position.z;
     }
 
     // Update is called once per frame
@@ -31,7 +33,7 @@ public class FoodScript : MonoBehaviour
             }
             if(!isBack)
             {
-                transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, 0);
+                transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, zPosition + canvas.transform.position.z);
                 isBack = true;
             }
         }

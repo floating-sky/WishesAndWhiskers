@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Scratched_couch_0: 8007478242427220901
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

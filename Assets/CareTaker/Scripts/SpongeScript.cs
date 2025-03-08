@@ -5,6 +5,7 @@ public class SpongeScript : MonoBehaviour
 {
     public float xPosition;
     public float yPosition;
+    public float zPosition;
     public Boolean dragging = false;
     public Vector3 offset;
     public Canvas canvas;
@@ -15,7 +16,7 @@ public class SpongeScript : MonoBehaviour
     {
         xPosition = transform.position.x;
         yPosition = transform.position.y;
-        transform.position = new Vector3(xPosition, yPosition, 0);
+        zPosition = transform.position.z;
     }
 
     // Update is called once per frame
@@ -31,7 +32,7 @@ public class SpongeScript : MonoBehaviour
             }
             if (!isBack)
             {
-                transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, 0);
+                transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, zPosition + canvas.transform.position.z);
                 isBack = true;
             }
         }

@@ -74,13 +74,6 @@ public class CatScript : MonoBehaviour
             animator.SetBool("isEatingDrinking", true);
             StartCoroutine(WaitForEatingDrinkingAnimation(4f));
         }
-        if(inTrigger){
-            print("statement 1");
-        }
-
-        if(Input.GetMouseButtonUp(0)){
-            print("statement 2");
-        }
 
         // Wash the cat with sponge
         if (inTrigger && Input.GetMouseButtonUp(0))

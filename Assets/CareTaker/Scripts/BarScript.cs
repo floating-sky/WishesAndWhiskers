@@ -6,7 +6,6 @@ public class BarScript : MonoBehaviour
 {
     public float increaseSpeed;
     public float decreaseSpeed;
-    public GameObject finishWindow;
     public Boolean isFeedTwice;                            // After the feed the cat twice, fail statement apply
     private Slider bar;
     [SerializeField] private float targetProcess;

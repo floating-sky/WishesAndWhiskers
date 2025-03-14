@@ -75,14 +75,17 @@ public class CatScript : MonoBehaviour
             StartCoroutine(WaitForEatingDrinkingAnimation(4f));
         }
 
-        // Wash the cat with sponge
-        if (inTrigger && Input.GetMouseButtonUp(0))
-        {
-            // Check the input object is sponge
-            if (inputObject.gameObject.layer == 7)
+        // Time Line stop(bath time)
+        if(!(Time.timeScale == 0f)){
+            // Wash the cat with sponge
+            if (inTrigger && Input.GetMouseButtonUp(0))
             {
-                print("sponge");
-                logicScript.spongeLogic();
+                // Check the input object is sponge
+                if (inputObject.gameObject.layer == 7)
+                {
+                    print("sponge");
+                    logicScript.spongeLogic();
+                }
             }
         }
     }

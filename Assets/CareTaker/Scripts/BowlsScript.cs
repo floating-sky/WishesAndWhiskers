@@ -121,6 +121,7 @@ public class BowlsScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        print("enter");
         inTrigger = true;
         inputObject = collision;
     }

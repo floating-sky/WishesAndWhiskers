@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,11 +15,16 @@ public class LogicScript : MonoBehaviour
     public GameObject controlWindow;
     public GameObject finishWindow;
     public GameObject spongeWindow;
-    public GameObject Sponge;
+    public GameObject sponge;
+    public GameObject spongeInBath;
+    public GameObject catInBath;
     public PlayableDirector timeline;
     [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
+    [SerializeField] private BarScript WashBar;
     private int feedCount;
+    private Boolean isBath = false;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,7 +49,7 @@ public class LogicScript : MonoBehaviour
         // Setting of Level 2
         if(currentLevel == 2)
         {
-            Sponge.SetActive(true);
+            sponge.SetActive(true);
             timeline.playableAsset = level2;
         }
 
@@ -70,11 +76,19 @@ public class LogicScript : MonoBehaviour
 
         // Check all the cats meow is up to 2 then decrease the process bar
         CheckCatsMeowCount();
+
+        // Bath time
+        if(isBath){
+            // Check wash bar is full or not
+            if(WashBar.getValue() >= 1.0){
+               spongeLogicEnd();
+            }
+        }
     }
 
     public void SetCatHungry()
     {
-        int catInd = Random.Range(0, Cats.Length);
+        int catInd = UnityEngine.Random.Range(0, Cats.Length);
 
         // If cat is not hungry, set it to hungry
         if(!Cats[catInd].GetHungry())
@@ -85,7 +99,7 @@ public class LogicScript : MonoBehaviour
 
     public void SetCatThirsty()
     {
-        int catInd = Random.Range(0, Cats.Length);
+        int catInd = UnityEngine.Random.Range(0, Cats.Length);
 
         // If cat is not thirsty, set it to thirsty
         if(!Cats[catInd].GetThirsty())
@@ -117,12 +131,23 @@ public class LogicScript : MonoBehaviour
     public void spongeLogic()
     {
         spongeWindow.SetActive(true);
+        spongeInBath.SetActive(true);
+        catInBath.SetActive(true);
+        isBath = true;
+    }
+
+    public void spongeLogicEnd()
+    {
+        spongeWindow.SetActive(false);
+        spongeInBath.SetActive(false);
+        catInBath.SetActive(false);
+        isBath = false;
     }
 
     private void CheckCatsMeowCount()
     {
         foreach(CatScript cat in Cats){
-            if(cat.meowCount >= 2)
+            if(cat.meowCount >= 2 && !(Time.timeScale == 0f))
             {
                 Bar.DecreaseProgressBar(0.01f);
             }

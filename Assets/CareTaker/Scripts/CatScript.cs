@@ -20,6 +20,7 @@ public class CatScript : MonoBehaviour
     private Boolean isWalkingToWaterBowl = false;
     public Boolean isHungry = false;
     public Boolean isThirsty = false;
+    public Boolean wantsPlay = false;
     public int meowCount = 0;
     public Vector3 lastPos;
     public LogicScript logicScript;
@@ -36,6 +37,7 @@ public class CatScript : MonoBehaviour
     public int moveRadius = 6; // How far from their current position the cat will move when they move to a random point
     public int hungryMeowInterval = 15; // Seconds between each meow the cat makes when they are hungry
     public int thirstyMeowInterval = 15;
+    public int wantsPlayInterval = 10;
     public int randomMovementInterval = 6; // Seconds between each time the cat moves to a random location
 
     NavMeshAgent agent;
@@ -66,7 +68,7 @@ public class CatScript : MonoBehaviour
         }
         lastPos = transform.position;
 
-        if ((isWalkingToFoodBowl || isWalkingToWaterBowl) && bowlIsDest && Vector3.Distance(transform.position, agent.destination) <= 1) 
+        if ((isWalkingToFoodBowl || isWalkingToWaterBowl) && bowlIsDest && Vector3.Distance(transform.position, agent.destination) <= 1)
         {
             bowlIsDest = false;
             print("REACHED DESTINATION");
@@ -76,7 +78,8 @@ public class CatScript : MonoBehaviour
         }
 
         // Time Line stop(bath time)
-        if(!(Time.timeScale == 0f)){
+        if (!(Time.timeScale == 0f))
+        {
             // Wash the cat with sponge
             if (inTrigger && Input.GetMouseButtonUp(0))
             {
@@ -102,13 +105,13 @@ public class CatScript : MonoBehaviour
             SetHungry(false);
             bowls.GetComponent<BowlsScript>().SetFood(false);
         }
-        else if (isWalkingToWaterBowl) 
+        else if (isWalkingToWaterBowl)
         {
             isWalkingToWaterBowl = false;
             SetThirsty(false);
             bowls.GetComponent<BowlsScript>().SetWater(false);
         }
-        
+
     }
 
     // Grabs a random point from the walkable area (within the given radius)
@@ -126,7 +129,7 @@ public class CatScript : MonoBehaviour
     }
 
     // Called at each randomMovementInterval
-    public void MoveCatToRandomDestination() 
+    public void MoveCatToRandomDestination()
     {
         if (!isBusy && !isDoingBehavior)
         {
@@ -134,22 +137,22 @@ public class CatScript : MonoBehaviour
         }
     }
 
-    public void CatHungryBehavior() 
+    public void CatHungryBehavior()
     {
-        if (!isBusy && !isDoingBehavior) 
+        if (!isBusy && !isDoingBehavior)
         {
             isDoingBehavior = true;
             agent.isStopped = true;
             float secondsToWait = 1.5f;
             hungryMeow.Play();
             animator.SetBool("isMeowing", true);
-            StartCoroutine(WaitForMeowAnimation(secondsToWait));
+            StartCoroutine(WaitForAnimation(secondsToWait, "isMeowing"));
             meowCount++;
             print("Cat is meowing (HUNGRY)");
         }
     }
 
-    public void CatThirstyBehavior() 
+    public void CatThirstyBehavior()
     {
         if (!isBusy && !isDoingBehavior)
         {
@@ -158,24 +161,38 @@ public class CatScript : MonoBehaviour
             float secondsToWait = 1.5f;
             thirstyMeow.Play();
             animator.SetBool("isMeowing", true);
-            StartCoroutine(WaitForMeowAnimation(secondsToWait));
+            StartCoroutine(WaitForAnimation(secondsToWait, "isMeowing"));
             meowCount++;
             print("Cat is meowing (THIRSTY)");
         }
     }
 
-    IEnumerator WaitForMeowAnimation(float seconds) 
+    public void CatPlayBehavior()
+    {
+        if (!isBusy && !isDoingBehavior)
+        {
+            isDoingBehavior = true;
+            agent.isStopped = true;
+            float secondsToWait = 2f;
+            animator.SetBool("isPlaying", true);
+            StartCoroutine(WaitForAnimation(secondsToWait, "isPlaying"));
+            print("Cat wants to play");
+        }
+    }
+
+    IEnumerator WaitForAnimation(float seconds, string animationBool)
     {
         yield return new WaitForSeconds(seconds);
         agent.isStopped = false;
         isDoingBehavior = false;
-        animator.SetBool("isMeowing", false);
+        animator.SetBool(animationBool, false);
     }
 
     public Boolean GetHungry()
     {
         return isHungry;
     }
+
 
     public void SetHungry(Boolean isHungry)
     {
@@ -217,9 +234,28 @@ public class CatScript : MonoBehaviour
         }
     }
 
+    public void SetWantsPlay(Boolean wantsPlay)
+    {
+        if (this.wantsPlay == wantsPlay)
+            return;
+        this.wantsPlay = wantsPlay;
+        if (wantsPlay)
+        {
+            print("Cat wants to play");
+            InvokeRepeating("CatPlayBehavior", 1, wantsPlayInterval);
+        }
+        else
+        {
+            print("Cat no longer wants to play");
+            CancelInvoke("CatPlayBehavior");
+        }
+    }
+
+
+
     public void EatFood()
     {
-        if (!isBusy && isHungry) 
+        if (!isBusy && isHungry)
         {
             isBusy = true;
             isWalkingToFoodBowl = true;
@@ -231,7 +267,7 @@ public class CatScript : MonoBehaviour
         }
     }
 
-    public void DrinkWater() 
+    public void DrinkWater()
     {
         if (!isBusy && isThirsty)
         {

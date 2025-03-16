@@ -24,7 +24,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private BarScript WashBar;
     private int feedCount;
     private Boolean isBath = false;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +37,8 @@ public class LogicScript : MonoBehaviour
         Bar = GameObject.FindGameObjectWithTag("Bar").GetComponent<BarScript>();
 
         // Getting all the cats
-        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Cat")){
+        foreach (GameObject gameObject in GameObject.FindGameObjectsWithTag("Cat"))
+        {
             Cats[ind] = gameObject.GetComponent<CatScript>();
             ind++;
         }
@@ -47,7 +48,7 @@ public class LogicScript : MonoBehaviour
         controlWindow.SetActive(true);
 
         // Setting of Level 2
-        if(currentLevel == 2)
+        if (currentLevel == 2)
         {
             sponge.SetActive(true);
             timeline.playableAsset = level2;
@@ -60,14 +61,14 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         // Next Level
-        if(Bar.getValue() >= 1.0)
+        if (Bar.getValue() >= 1.0)
         {
             print("Level 1 passed!");
             finishWindow.SetActive(true);
             Time.timeScale = 0.0f;
         }
 
-        if(Bar.getValue() < 0.0 && Bar.isFeedTwice)
+        if (Bar.getValue() < 0.0 && Bar.isFeedTwice)
         {
             print("Level 1 fail");
             Time.timeScale = 0.0f;
@@ -78,10 +79,12 @@ public class LogicScript : MonoBehaviour
         CheckCatsMeowCount();
 
         // Bath time
-        if(isBath){
+        if (isBath)
+        {
             // Check wash bar is full or not
-            if(WashBar.getValue() >= 1.0){
-               spongeLogicEnd();
+            if (WashBar.getValue() >= 1.0)
+            {
+                spongeLogicEnd();
             }
         }
     }
@@ -91,7 +94,7 @@ public class LogicScript : MonoBehaviour
         int catInd = UnityEngine.Random.Range(0, Cats.Length);
 
         // If cat is not hungry, set it to hungry
-        if(!Cats[catInd].GetHungry())
+        if (!Cats[catInd].GetHungry())
         {
             Cats[catInd].SetHungry(true);
         }
@@ -102,16 +105,29 @@ public class LogicScript : MonoBehaviour
         int catInd = UnityEngine.Random.Range(0, Cats.Length);
 
         // If cat is not thirsty, set it to thirsty
-        if(!Cats[catInd].GetThirsty())
+        if (!Cats[catInd].GetThirsty())
         {
             Cats[catInd].SetThirsty(true);
         }
     }
 
+    public void SetCatWantsPlay()
+    {
+        int catInd = UnityEngine.Random.Range(0, Cats.Length);
+
+        // If cat is not thirsty, set it to thirsty
+        if (!Cats[catInd].wantsPlay)
+        {
+            Cats[catInd].SetWantsPlay(true);
+        }
+    }
+
+
     public void CatAteFoodORWater()
     {
         feedCount++;
-        if(feedCount >= 2){
+        if (feedCount >= 2)
+        {
             Bar.isFeedTwice = true;
         }
         Bar.IncreaseProgressBar(0.2f);
@@ -146,8 +162,9 @@ public class LogicScript : MonoBehaviour
 
     private void CheckCatsMeowCount()
     {
-        foreach(CatScript cat in Cats){
-            if(cat.meowCount >= 2 && !(Time.timeScale == 0f))
+        foreach (CatScript cat in Cats)
+        {
+            if (cat.meowCount >= 2 && !(Time.timeScale == 0f))
             {
                 Bar.DecreaseProgressBar(0.01f);
             }

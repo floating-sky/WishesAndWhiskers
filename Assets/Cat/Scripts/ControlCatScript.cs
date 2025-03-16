@@ -31,8 +31,11 @@ public class ControlCatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        screenRightBoundary = Camera.main.ViewportToWorldPoint(new Vector2(1, 0)).x;
+        screenLeftBoundary = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)).x;
+
         // Start the control movement after the player closed the control window
-        if(!(Time.timeScale == 0f)){
+        if (!(Time.timeScale == 0f)){
             Vector2 position = (Vector2)transform.position + moveInput * 3.0f * Time.deltaTime;
             transform.position = position;
 
@@ -43,12 +46,12 @@ public class ControlCatScript : MonoBehaviour
             }
         }
 
-        if (transform.position.x > screenRightBoundary - 2f)
+        if (transform.position.x > screenRightBoundary - 5f)
         {
             // Move camera right
             cam.transform.position = ClampCamera(cam.transform.position + new Vector3(cameraMoveSpeed * Time.deltaTime, 0, 0));
         }
-        else if (transform.position.x < screenLeftBoundary + 2f)
+        else if (transform.position.x < screenLeftBoundary + 5f)
         {
             // Move camera left
             cam.transform.position = ClampCamera(cam.transform.position - new Vector3(cameraMoveSpeed * Time.deltaTime, 0, 0));

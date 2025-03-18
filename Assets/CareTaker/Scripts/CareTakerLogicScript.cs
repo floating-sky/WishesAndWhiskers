@@ -31,7 +31,9 @@ public class LogicScript : MonoBehaviour
         // Setting
         int ind = 0;
         feedCount = 0;
+        // Assign the time line
         timeline.playableAsset = level1;
+        timeline.Play();                                        // Start the time line
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cat");
         Cats = new CatScript[gameObjects.Length];
         Bar = GameObject.FindGameObjectWithTag("Bar").GetComponent<BarScript>();

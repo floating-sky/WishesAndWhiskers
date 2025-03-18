@@ -124,6 +124,10 @@ public class LogicScript : MonoBehaviour
         }
     }
 
+    public void CatPlayed() 
+    {
+        Bar.IncreaseProgressBar(0.2f);
+    }
 
     public void CatAteFoodORWater()
     {

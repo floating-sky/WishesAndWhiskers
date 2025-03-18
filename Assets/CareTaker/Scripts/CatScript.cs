@@ -35,9 +35,9 @@ public class CatScript : MonoBehaviour
     public Boolean isDoingBehavior = false;
 
     public int moveRadius = 6; // How far from their current position the cat will move when they move to a random point
-    public int hungryMeowInterval = 15; // Seconds between each meow the cat makes when they are hungry
-    public int thirstyMeowInterval = 15;
-    public int wantsPlayInterval = 10;
+    public int hungryMeowInterval = 10; // Seconds between each meow the cat makes when they are hungry
+    public int thirstyMeowInterval = 10;
+    public int wantsPlayInterval = 8;
     public int randomMovementInterval = 6; // Seconds between each time the cat moves to a random location
 
     NavMeshAgent agent;
@@ -51,7 +51,7 @@ public class CatScript : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        InvokeRepeating("MoveCatToRandomDestination", 6f, randomMovementInterval);
+        InvokeRepeating("MoveCatToRandomDestination", 2f, randomMovementInterval);
         logicScript = GameObject.FindGameObjectWithTag("CareTakerLogic").GetComponent<LogicScript>();
     }
 
@@ -91,6 +91,18 @@ public class CatScript : MonoBehaviour
                 }
             }
         }
+
+        if (inTrigger)
+        {
+            // toy
+            if (inputObject.gameObject.layer == 9)
+            {
+                if (Input.GetMouseButtonUp(0) && wantsPlay)                     // if mouse released and bowl doesn't have food, add food 
+                {
+                    Play();
+                }
+            }
+        }
     }
 
     IEnumerator WaitForEatingDrinkingAnimation(float seconds)
@@ -113,6 +125,15 @@ public class CatScript : MonoBehaviour
         }
 
     }
+
+    IEnumerator WaitForPlayingAnimation(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        agent.isStopped = false;
+        isBusy = false;
+        animator.SetBool("isWantingPlay", false);
+    }
+
 
     // Grabs a random point from the walkable area (within the given radius)
     public Vector3 GetRandomNavmeshLocation(float radius)
@@ -167,15 +188,15 @@ public class CatScript : MonoBehaviour
         }
     }
 
-    public void CatPlayBehavior()
+    public void CatWantsPlayBehavior()
     {
         if (!isBusy && !isDoingBehavior)
         {
             isDoingBehavior = true;
             agent.isStopped = true;
             float secondsToWait = 2f;
-            animator.SetBool("isPlaying", true);
-            StartCoroutine(WaitForAnimation(secondsToWait, "isPlaying"));
+            animator.SetBool("isWantingPlay", true);
+            StartCoroutine(WaitForAnimation(secondsToWait, "isWantingPlay"));
             print("Cat wants to play");
         }
     }
@@ -242,12 +263,12 @@ public class CatScript : MonoBehaviour
         if (wantsPlay)
         {
             print("Cat wants to play");
-            InvokeRepeating("CatPlayBehavior", 1, wantsPlayInterval);
+            InvokeRepeating("CatWantsPlayBehavior", 1, wantsPlayInterval);
         }
         else
         {
             print("Cat no longer wants to play");
-            CancelInvoke("CatPlayBehavior");
+            CancelInvoke("CatWantsPlayBehavior");
         }
     }
 
@@ -281,6 +302,21 @@ public class CatScript : MonoBehaviour
         }
     }
 
+    public void Play() 
+    {
+        if (!isBusy && wantsPlay)
+        {
+            isBusy = true;
+            agent.isStopped = true;
+            float secondsToWait = 3f;
+            animator.SetBool("isWantingPlay", true); //  !! CHANGE TO isPlaying WHEN ANIMATION IS DONE !!
+            StartCoroutine(WaitForPlayingAnimation(secondsToWait));
+            print("cat is playing!");
+            SetWantsPlay(false);
+            logicScript.CatPlayed();
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         inTrigger = true;
@@ -292,4 +328,5 @@ public class CatScript : MonoBehaviour
         inTrigger = false;
         inputObject = new Collider2D();
     }
+
 }

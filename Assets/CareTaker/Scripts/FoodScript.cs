@@ -10,6 +10,7 @@ public class FoodScript : MonoBehaviour
     public Boolean dragging = false;
     public Vector3 offset;
     public Canvas canvas;
+    public LogicScript logic;
     [SerializeField] private Boolean isBack = true;
     [SerializeField] private Sprite food;
     [SerializeField] private Sprite dropingFood;
@@ -26,7 +27,7 @@ public class FoodScript : MonoBehaviour
     void Update()
     {
         // When level 1 start
-        if(!(Time.timeScale == 0f))
+        if(!(Time.timeScale == 0f) && !(logic.isBath))
         {
             // Food follow the, else return to starting position
             if (dragging)

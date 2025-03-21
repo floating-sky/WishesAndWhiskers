@@ -21,6 +21,7 @@ public class CatScript : MonoBehaviour
     public Boolean isHungry = false;
     public Boolean isThirsty = false;
     public Boolean wantsPlay = false;
+    public Boolean isDirty = false;
     public int meowCount = 0;
     public Vector3 lastPos;
     public LogicScript logicScript;
@@ -84,7 +85,7 @@ public class CatScript : MonoBehaviour
             if (inTrigger && Input.GetMouseButtonUp(0))
             {
                 // Check the input object is sponge
-                if (inputObject.gameObject.layer == 7)
+                if (inputObject.gameObject.layer == 7 && isDirty)
                 {
                     print("sponge");
                     logicScript.spongeLogic();

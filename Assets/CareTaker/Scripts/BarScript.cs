@@ -58,10 +58,4 @@ public class BarScript : MonoBehaviour
     {
         return bar.value;
     }
-
-    // Next Level Button Function
-    public void nextLevel(){
-        // Right now just end the game
-        Application.Quit();
-    }
 }

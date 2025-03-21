@@ -12,6 +12,7 @@ public class CatLogicScript : MonoBehaviour
     public GameObject controlWindow;
     public GameObject sofaEButton;
     public GameObject catClimbingEButton;
+    [SerializeField] public static int currentLevel = 0;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
     [SerializeField] private int currentTasks;
@@ -31,6 +32,7 @@ public class CatLogicScript : MonoBehaviour
 
         Time.timeScale = 0f;
         controlWindow.SetActive(true);
+        print("current: " + currentLevel);
     }
 
     // Update is called once per frame

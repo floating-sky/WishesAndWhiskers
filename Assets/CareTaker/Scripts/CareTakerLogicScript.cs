@@ -1,10 +1,12 @@
 using System;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
@@ -14,16 +16,19 @@ public class LogicScript : MonoBehaviour
     public CatScript[] Cats;
     public GameObject controlWindow;
     public GameObject finishWindow;
+    public TMP_Text finishText;
     public GameObject spongeWindow;
+    public GameObject newMaterialWindow;
     public GameObject sponge;
     public GameObject spongeInBath;
     public GameObject catInBath;
     public PlayableDirector timeline;
     [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
+    public SofaScriptCarer sofa;
+    public Boolean isBath = false;
     [SerializeField] private BarScript WashBar;
     private int feedCount;
-    private Boolean isBath = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,9 +36,8 @@ public class LogicScript : MonoBehaviour
         // Setting
         int ind = 0;
         feedCount = 0;
-        // Assign the time line
-        timeline.playableAsset = level1;
-        timeline.Play();                                        // Start the time line
+        timeline.playableAsset = level1;                    // Assign the time line
+
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cat");
         Cats = new CatScript[gameObjects.Length];
         Bar = GameObject.FindGameObjectWithTag("Bar").GetComponent<BarScript>();
@@ -54,8 +58,14 @@ public class LogicScript : MonoBehaviour
         {
             sponge.SetActive(true);
             timeline.playableAsset = level2;
+            sofa.ChangeView(1);
+            Cats[0].isDirty = true;
         }
 
+        // If is level then start the timeline immediately
+        if(currentLevel == 1){
+            timeline.Play();
+        }
         print("currentLevel: " + currentLevel);
     }
 
@@ -65,7 +75,17 @@ public class LogicScript : MonoBehaviour
         // Next Level
         if (Bar.getValue() >= 1.0)
         {
-            print("Level 1 passed!");
+            // Change text message
+            switch(currentLevel)
+            {
+                case 1:
+                    finishText.text = "Day 1 complete!";
+                    break;
+                case 2:
+                    finishText.text = "Day 2 complete!";
+                    break;
+            }
+
             finishWindow.SetActive(true);
             Time.timeScale = 0.0f;
         }
@@ -141,6 +161,7 @@ public class LogicScript : MonoBehaviour
 
     public void NextLevelButton()
     {
+        CatLogicScript.currentLevel += 1;
         SceneManager.LoadSceneAsync(2);
     }
 
@@ -163,7 +184,17 @@ public class LogicScript : MonoBehaviour
         spongeWindow.SetActive(false);
         spongeInBath.SetActive(false);
         catInBath.SetActive(false);
+        newMaterialWindow.SetActive(true);
+        Bar.IncreaseProgressBar(0.2f);
         isBath = false;
+        Cats[0].isDirty = false;
+    }
+
+    public void newMaterialWindowLogic()
+    {
+        newMaterialWindow.SetActive(false);
+        sofa.ChangeView(2);
+        timeline.Play();
     }
 
     private void CheckCatsMeowCount()

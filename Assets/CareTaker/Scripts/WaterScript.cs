@@ -9,6 +9,7 @@ public class WaterScript : MonoBehaviour
     public Boolean dragging = false;
     public Vector3 offset;
     public Canvas canvas;
+    public LogicScript logic;
     [SerializeField] private Boolean isBack = true;
     [SerializeField] private Sprite water;
     [SerializeField] private Sprite dropingWater;
@@ -25,7 +26,7 @@ public class WaterScript : MonoBehaviour
     void Update()
     {
         // When level 1 start
-        if(!(Time.timeScale == 0f))
+        if(!(Time.timeScale == 0f) && !(logic.isBath))
         {
             // Water follow the, else return to starting position
             if (dragging)

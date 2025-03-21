@@ -9,6 +9,7 @@ public class SpongeScript : MonoBehaviour
     public Boolean dragging = false;
     public Vector3 offset;
     public Canvas canvas;
+    public LogicScript logic;
     [SerializeField] private Boolean isBack = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,7 +24,7 @@ public class SpongeScript : MonoBehaviour
     void Update()
     {
         // When level 2 start
-        if (!(Time.timeScale == 0f))
+        if(!(Time.timeScale == 0f) && !(logic.isBath))
         {
             // Sponge follow the, else return to starting position
             if (dragging)

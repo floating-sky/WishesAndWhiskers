@@ -178,15 +178,12 @@ public class CatLogicScript : MonoBehaviour
                 {
                     case 0:
                         dialogueObject.SetActive(true);
-                        text.text = "Looks really soft, I’m tempted to scratch it. Maybe the cat tree would be better. Meow.";
+                        text.text = "Hmm I need to make sure that everyone knows this is MY territory";
                         break;
                     case 1:
-                        text.text = "Looks really soft, I’m tempted to scratch it. I really want to starch something. Meow.";
+                        text.text = "*scratch scratch*";
                         break;
                     case 2:
-                        text.text = "*scratch scratch scratch*";
-                        break;
-                    case 3:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         sofaEButton.SetActive(false);
@@ -203,15 +200,12 @@ public class CatLogicScript : MonoBehaviour
                 {
                     case 0:
                         dialogueObject.SetActive(true);
-                        text.text = "This so meowvelous. Yum";
+                        text.text = "I’m now the king of this place!";
                         break;
                     case 1:
-                        text.text = "*scratch scratch scratch*";
+                        text.text = "ooo this place is also a really good spot to sleep but it’s currently too cold. I need to find another spot";
                         break;
                     case 2:
-                        text.text = "I'm the king of the house now";
-                        break;
-                    case 3:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         catClimbingEButton.SetActive(false);
@@ -227,17 +221,14 @@ public class CatLogicScript : MonoBehaviour
                 {
                     case 0:
                         dialogueObject.SetActive(true);
-                        text.text = "I'm tired meow~";
+                        text.text = "wow this place feels so warm…. *yawn*";
                         break;
                     case 1:
-                        text.text = "This place looks warm and safe";
-                        break;
-                    case 2:
                         text.text = "Zzzzz....";
                         cat.SetActive(false);
                         plant.changeView(1);                            // Cat sleep on the plant
                         break;
-                    case 3:
+                    case 2:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         plantEButton.SetActive(false);
@@ -253,18 +244,9 @@ public class CatLogicScript : MonoBehaviour
                 {
                     case 0:
                         dialogueObject.SetActive(true);
-                        text.text = "This new one also looks very soft!";
+                        text.text = "Hmmm this sofa smells weird, I don't like it";
                         break;
                     case 1:
-                        text.text = "My nail still too long Meow";
-                        break;
-                    case 2:
-                        text.text = "But, that human look sad when I scrathed it";
-                        break;
-                    case 3:
-                        text.text = "Let you go this time, Thank me Meow!";
-                        break;
-                    case 4:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         plantEButton.SetActive(false);
@@ -280,18 +262,15 @@ public class CatLogicScript : MonoBehaviour
                 {
                     case 0:
                         dialogueObject.SetActive(true);
-                        text.text = "This could be a good place to sleep";
+                        text.text = "I feel kinda bored, I wanna scratch something.";
                         break;
                     case 1:
-                        text.text = "Zzzz....";
+                        text.text = "Hehe I’ll scratch this";
                         break;
                     case 2:
-                        text.text = "IT SO COLD MEOW!!!";
+                        text.text = "*scratch scratch*";
                         break;
                     case 3:
-                        text.text = "I should find another place meow...";
-                        break;
-                    case 4:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         plantEButton.SetActive(false);
@@ -316,7 +295,7 @@ public class CatLogicScript : MonoBehaviour
                         text.text = "That is a nightmare...";
                         break;
                     case 3:
-                        text.text = "Lef find another place to sleep meow...";
+                        text.text = "Let find another place to sleep meow...";
                         break;
                     case 4:
                         isDialogue = false;
@@ -334,21 +313,12 @@ public class CatLogicScript : MonoBehaviour
                 {
                     case 0:
                         dialogueObject.SetActive(true);
-                        text.text = "What is this? (Punch)(Punch)";
+                        text.text = "I think they must’ve gotten this bed for me to sleep in!";
                         break;
                     case 1:
-                        text.text = "It really soft and warm Meow!!!";
+                        text.text = "Yay I can now sleep in a cozy and comfortable spot";
                         break;
                     case 2:
-                        text.text = "It is safe? (Punch)(Punch)";
-                        break;
-                    case 3:
-                        text.text = "I guess is alright?";
-                        break;
-                    case 4:
-                        text.text = "Meooowwww....Zzzz....";
-                        break;
-                    case 5:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         plantEButton.SetActive(false);

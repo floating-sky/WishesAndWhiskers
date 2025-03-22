@@ -12,9 +12,12 @@ public class CatLogicScript : MonoBehaviour
     public GameObject controlWindow;
     public GameObject sofaEButton;
     public GameObject catClimbingEButton;
+    public GameObject plantEButton;
+    public GameObject cat;
     [SerializeField] public static int currentLevel = 0;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
+    [SerializeField] private PlantScript plant;
     [SerializeField] private int currentTasks;
     private int targetTasks;
     private int dialogueInd;
@@ -26,9 +29,10 @@ public class CatLogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        targetTasks = 2;
+        targetTasks = 3;
         sofa = GameObject.FindGameObjectWithTag("Sofa").GetComponent<SofaScript>();
         catClimbing = GameObject.FindGameObjectWithTag("CatClimbing").GetComponent<CatClimbingScript>();
+        plant = GameObject.FindGameObjectWithTag("Plant").GetComponent<PlantScript>();
 
         Time.timeScale = 0f;
         controlWindow.SetActive(true);
@@ -104,11 +108,32 @@ public class CatLogicScript : MonoBehaviour
             itemNumber = 1;
             Time.timeScale = 0f;
         }
+
+        // After player played sofa and cat tree, it ready to play with plant
+        if(currentTasks == 2)
+        {
+            plant.setIsReady(true);
+        }
+
+        if(plant.inTrigger && (currentTasks == 2))
+        {
+            print("Cat play with plant");
+
+            // Tasks
+            currentTasks++;
+
+            // Dialogues
+            dialogueInd = 0;
+            isDialogue = true;
+            itemNumber = 2;
+            Time.timeScale = 0f;
+        }
     }
 
     // Text change by mouse clicked
     // Item number 0 = sofa
     // Item number 1 = cat climbing
+    // Item number 2 = plant
     private void dialogueTextProcess()
     {
         // sofa
@@ -130,7 +155,7 @@ public class CatLogicScript : MonoBehaviour
                     isDialogue = false;
                     dialogueObject.SetActive(false);
                     sofaEButton.SetActive(false);
-                    sofa.changeDamageSofa();
+                    sofa.changeView(1);
                     Time.timeScale = 1f;
                     break;
             }
@@ -155,6 +180,32 @@ public class CatLogicScript : MonoBehaviour
                     isDialogue = false;
                     dialogueObject.SetActive(false);
                     catClimbingEButton.SetActive(false);
+                    Time.timeScale = 1f;
+                    break;
+            }
+        }
+
+        // plant
+        if(itemNumber == 2)
+        {
+            switch(dialogueInd)
+            {
+                case 0:
+                    dialogueObject.SetActive(true);
+                    text.text = "I'm tired meow~";
+                    break;
+                case 1:
+                    text.text = "This place looks warm and safe";
+                    break;
+                case 2:
+                    text.text = "Zzzzz....";
+                    cat.SetActive(false);
+                    plant.changeView(1);                            // Cat sleep on the plant
+                    break;
+                case 3:
+                    isDialogue = false;
+                    dialogueObject.SetActive(false);
+                    plantEButton.SetActive(false);
                     Time.timeScale = 1f;
                     break;
             }

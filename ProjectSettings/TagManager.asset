@@ -15,6 +15,7 @@ TagManager:
   - Sponge
   - WashBar
   - Plant
+  - CatBed
   layers:
   - Default
   - TransparentFX

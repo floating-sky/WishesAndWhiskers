@@ -43,6 +43,11 @@ public class SpongeScript : MonoBehaviour
     {
         isBack = value;
     }
+    public void setBackPosition()
+    {
+        transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, zPosition + canvas.transform.position.z);
+        isBack = true;
+    }
 
     private void OnMouseDown()
     {

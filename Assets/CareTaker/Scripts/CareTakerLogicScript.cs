@@ -27,6 +27,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] public static int currentLevel = 2;
     private BarScript Bar;
     public SofaScriptCarer sofa;
+    public SpongeScript spongeScript;
     public Boolean isBath = false;
     [SerializeField] private BarScript WashBar;
     private int feedCount;
@@ -188,6 +189,7 @@ public class LogicScript : MonoBehaviour
 
     public void spongeLogic()
     {
+        spongeScript.setBackPosition();
         spongeWindow.SetActive(true);
         spongeInBath.SetActive(true);
         catInBath.SetActive(true);
@@ -213,6 +215,7 @@ public class LogicScript : MonoBehaviour
     {
         newMaterialWindow.SetActive(false);
         sofa.ChangeView(2);
+        timeline.playableAsset = level2;
         timeline.Play();
     }
 

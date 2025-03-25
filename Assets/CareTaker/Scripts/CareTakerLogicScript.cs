@@ -22,13 +22,15 @@ public class LogicScript : MonoBehaviour
     public GameObject sponge;
     public GameObject spongeInBath;
     public GameObject catInBath;
+    public GameObject plant;
     public PlayableDirector timeline;
-    [SerializeField] public static int currentLevel = 1;
+    [SerializeField] public static int currentLevel = 2;
     private BarScript Bar;
     public SofaScriptCarer sofa;
     public Boolean isBath = false;
     [SerializeField] private BarScript WashBar;
     private int feedCount;
+    Boolean firstWashDone;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,9 +59,11 @@ public class LogicScript : MonoBehaviour
         if (currentLevel == 2)
         {
             sponge.SetActive(true);
+            plant.SetActive(true);
             timeline.playableAsset = level2;
             sofa.ChangeView(1);
-            Cats[0].isDirty = true;
+            firstWashDone = false;
+            Cats[0].GoInsidePlant();
         }
 
         // If is level then start the timeline immediately
@@ -144,6 +148,17 @@ public class LogicScript : MonoBehaviour
         }
     }
 
+    public void SetCatWantsSleepInPlant()
+    {
+        int catInd = UnityEngine.Random.Range(0, Cats.Length);
+
+        // If cat is not thirsty, set it to thirsty
+        if (!Cats[catInd].wantsSleepInPlant)
+        {
+            Cats[catInd].SetWantsSleepInPlant(true);
+        }
+    }
+
     public void CatPlayed() 
     {
         Bar.IncreaseProgressBar(0.2f);
@@ -184,10 +199,14 @@ public class LogicScript : MonoBehaviour
         spongeWindow.SetActive(false);
         spongeInBath.SetActive(false);
         catInBath.SetActive(false);
-        newMaterialWindow.SetActive(true);
+        if (!firstWashDone)
+        {
+            firstWashDone = true;
+            newMaterialWindow.SetActive(true);
+        }
         Bar.IncreaseProgressBar(0.2f);
         isBath = false;
-        Cats[0].isDirty = false;
+        plant.GetComponent<CaretakerPlantScript>().CatLeaves();
     }
 
     public void newMaterialWindowLogic()

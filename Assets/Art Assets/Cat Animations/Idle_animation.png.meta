@@ -66,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 150
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -144,10 +144,10 @@ TextureImporter:
       name: Idle_animation_0
       rect:
         serializedVersion: 2
-        x: 195
-        y: 132
-        width: 580
-        height: 711
+        x: 0
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,10 +166,10 @@ TextureImporter:
       name: Idle_animation_1
       rect:
         serializedVersion: 2
-        x: 1195
-        y: 132
-        width: 579
-        height: 719
+        x: 1000
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: Idle_animation_2
       rect:
         serializedVersion: 2
-        x: 2195
-        y: 133
-        width: 580
-        height: 724
+        x: 2000
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: Idle_animation_3
       rect:
         serializedVersion: 2
-        x: 3195
-        y: 132
-        width: 579
-        height: 719
+        x: 3000
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,10 +232,10 @@ TextureImporter:
       name: Idle_animation_4
       rect:
         serializedVersion: 2
-        x: 4195
-        y: 133
-        width: 580
-        height: 724
+        x: 4000
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,10 +254,10 @@ TextureImporter:
       name: Idle_animation_5
       rect:
         serializedVersion: 2
-        x: 5195
-        y: 132
-        width: 579
-        height: 719
+        x: 5000
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 441ae1ecf9ca5bb41bf8c625dabc43ad
     internalID: 0
     vertices: []
     indices: 
@@ -285,7 +285,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Idle_animation_0: -8575487910126867567
+      Idle_animation_1: -2849738790707521669
+      Idle_animation_2: 3791531116854382607
+      Idle_animation_3: 188646564446117257
+      Idle_animation_4: -4719401010285313733
+      Idle_animation_5: 7289881164349115456
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

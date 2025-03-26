@@ -82,7 +82,7 @@ public class CatLogicScript : MonoBehaviour
         print("before change cat level current level: " + LogicScript.currentLevel);
         LogicScript.currentLevel += 1;
         print("after add cat level current level: " + LogicScript.currentLevel);
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(1);
     }
 
     public void CatInteracted()

@@ -29,6 +29,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private BarScript WashBar;
     private int feedCount;
     Boolean firstWashDone;
+    Boolean catNeedsToGoInPlant = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,7 +61,8 @@ public class LogicScript : MonoBehaviour
             plant.SetActive(true);
             sofa.ChangeView(1);
             firstWashDone = false;
-            Cats[0].GoInsidePlant();
+            catNeedsToGoInPlant = true;
+            print("GETTING SET TO TRUE");
             timeline.Stop();
         }
 
@@ -70,6 +72,12 @@ public class LogicScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (catNeedsToGoInPlant) 
+        {
+            Cats[0].GoInsidePlant();
+            catNeedsToGoInPlant = false;
+        }
+
         // Next Level
         if (Bar.getValue() >= 1.0)
         {
@@ -168,7 +176,7 @@ public class LogicScript : MonoBehaviour
     public void NextLevelButton()
     {
         CatLogicScript.currentLevel += 1;
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadScene(2);
     }
 
     public void Resume()

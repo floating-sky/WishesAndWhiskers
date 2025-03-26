@@ -41,6 +41,8 @@ public class CatScript : MonoBehaviour
     public int randomMovementInterval = 6; // Seconds between each time the cat moves to a random location
     public int wantsSleepInPlantInterval = 6;
 
+    private Vector2 velocity;
+
     NavMeshAgent agent;
     Animator animator;
 
@@ -61,11 +63,16 @@ public class CatScript : MonoBehaviour
     {
         if (transform.position != lastPos)
         {
-            animator.SetBool("isWalking", true);
+            velocity = agent.velocity.normalized;
+            if (velocity.x < 0)
+                animator.SetBool("isWalkingLeft", true);
+            else
+                animator.SetBool("isWalkingRight", true);
         }
         else
         {
-            animator.SetBool("isWalking", false);
+            animator.SetBool("isWalkingLeft", false);
+            animator.SetBool("isWalkingRight", false);
         }
         lastPos = transform.position;
 

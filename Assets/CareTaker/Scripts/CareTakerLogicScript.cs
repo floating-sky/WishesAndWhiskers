@@ -10,9 +10,6 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    public TimelineAsset level1;
-    public TimelineAsset level2;
-
     public CatScript[] Cats;
     public GameObject controlWindow;
     public GameObject finishWindow;
@@ -22,13 +19,16 @@ public class LogicScript : MonoBehaviour
     public GameObject sponge;
     public GameObject spongeInBath;
     public GameObject catInBath;
+    public GameObject plant;
     public PlayableDirector timeline;
     [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
     public SofaScriptCarer sofa;
+    public SpongeScript spongeScript;
     public Boolean isBath = false;
     [SerializeField] private BarScript WashBar;
     private int feedCount;
+    Boolean firstWashDone;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,7 +36,6 @@ public class LogicScript : MonoBehaviour
         // Setting
         int ind = 0;
         feedCount = 0;
-        timeline.playableAsset = level1;                    // Assign the time line
 
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cat");
         Cats = new CatScript[gameObjects.Length];
@@ -56,16 +55,15 @@ public class LogicScript : MonoBehaviour
         // Setting of Level 2
         if (currentLevel == 2)
         {
+            
             sponge.SetActive(true);
-            timeline.playableAsset = level2;
+            plant.SetActive(true);
             sofa.ChangeView(1);
-            Cats[0].isDirty = true;
+            firstWashDone = false;
+            Cats[0].GoInsidePlant();
+            timeline.Stop();
         }
 
-        // If is level then start the timeline immediately
-        if(currentLevel == 1){
-            timeline.Play();
-        }
         print("currentLevel: " + currentLevel);
     }
 
@@ -144,6 +142,14 @@ public class LogicScript : MonoBehaviour
         }
     }
 
+    public void SetCatWantsSleepInPlant()
+    {
+        if (currentLevel == 2) 
+        {
+            
+        }
+    }
+
     public void CatPlayed() 
     {
         Bar.IncreaseProgressBar(0.2f);
@@ -173,9 +179,12 @@ public class LogicScript : MonoBehaviour
 
     public void spongeLogic()
     {
+        spongeScript.setBackPosition();
+        print("setting windows to active");
         spongeWindow.SetActive(true);
         spongeInBath.SetActive(true);
         catInBath.SetActive(true);
+        plant.SetActive(false);
         isBath = true;
     }
 
@@ -184,17 +193,22 @@ public class LogicScript : MonoBehaviour
         spongeWindow.SetActive(false);
         spongeInBath.SetActive(false);
         catInBath.SetActive(false);
-        newMaterialWindow.SetActive(true);
+        if (!firstWashDone)
+        {
+            firstWashDone = true;
+            newMaterialWindow.SetActive(true);
+            timeline.Play();
+        }
         Bar.IncreaseProgressBar(0.2f);
         isBath = false;
-        Cats[0].isDirty = false;
+        plant.SetActive(true);
+        plant.GetComponent<CaretakerPlantScript>().CatLeaves();
     }
 
     public void newMaterialWindowLogic()
     {
         newMaterialWindow.SetActive(false);
         sofa.ChangeView(2);
-        timeline.Play();
     }
 
     private void CheckCatsMeowCount()

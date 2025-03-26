@@ -7,21 +7,20 @@ using static UnityEngine.GraphicsBuffer;
 public class CatScript : MonoBehaviour
 {
 
-    [SerializeField]
-    public AudioSource hungryMeow;
+    [SerializeField] public AudioSource hungryMeow;
+    [SerializeField] public AudioSource thirstyMeow;
 
-    [SerializeField]
-    public AudioSource thirstyMeow;
-
-    [SerializeField]
-    GameObject bowls;
+    [SerializeField] GameObject bowls;
+    [SerializeField] GameObject plant;
 
     private Boolean isWalkingToFoodBowl = false;
     private Boolean isWalkingToWaterBowl = false;
+    private Boolean isWalkingToPlant = false;
+    public Boolean isDirty = false;
     public Boolean isHungry = false;
     public Boolean isThirsty = false;
     public Boolean wantsPlay = false;
-    public Boolean isDirty = false;
+    public Boolean wantsSleepInPlant = false;
     public int meowCount = 0;
     public Vector3 lastPos;
     public LogicScript logicScript;
@@ -40,6 +39,7 @@ public class CatScript : MonoBehaviour
     public int thirstyMeowInterval = 10;
     public int wantsPlayInterval = 8;
     public int randomMovementInterval = 6; // Seconds between each time the cat moves to a random location
+    public int wantsSleepInPlantInterval = 6;
 
     NavMeshAgent agent;
     Animator animator;
@@ -78,19 +78,9 @@ public class CatScript : MonoBehaviour
             StartCoroutine(WaitForEatingDrinkingAnimation(4f));
         }
 
-        // Time Line stop(bath time)
-        if (!(Time.timeScale == 0f))
+        if (isWalkingToPlant && Vector3.Distance(transform.position, agent.destination) <= 1) 
         {
-            // Wash the cat with sponge
-            if (inTrigger && Input.GetMouseButtonUp(0))
-            {
-                // Check the input object is sponge
-                if (inputObject.gameObject.layer == 7 && isDirty)
-                {
-                    print("sponge");
-                    logicScript.spongeLogic();
-                }
-            }
+            GoInsidePlant();
         }
 
         if (inTrigger)
@@ -124,7 +114,6 @@ public class CatScript : MonoBehaviour
             SetThirsty(false);
             bowls.GetComponent<BowlsScript>().SetWater(false);
         }
-
     }
 
     IEnumerator WaitForPlayingAnimation(float seconds)
@@ -202,6 +191,29 @@ public class CatScript : MonoBehaviour
         }
     }
 
+    public void CatWantsSleepInPlantBehavior()
+    {
+        if (!isBusy && !isDoingBehavior) 
+        {
+            isDoingBehavior = true;
+            isBusy = true;
+            isWalkingToPlant = true;
+            agent.SetDestination(plant.transform.position);
+        }
+    }
+
+    public void GoInsidePlant() 
+    {
+        print("going inside plant");
+        isWalkingToPlant = false;
+        isDoingBehavior = true;
+        isBusy = true;
+        agent.isStopped = true;
+        GetComponent<SpriteRenderer>().enabled = false;
+        plant.GetComponent<CaretakerPlantScript>().CatGoesInside();
+        SetWantsSleepInPlant(false);
+    }
+
     IEnumerator WaitForAnimation(float seconds, string animationBool)
     {
         yield return new WaitForSeconds(seconds);
@@ -273,7 +285,30 @@ public class CatScript : MonoBehaviour
         }
     }
 
+    public void SetWantsSleepInPlant(Boolean wantsSleepInPlant)
+    {
+        if (this.wantsSleepInPlant == wantsSleepInPlant)
+            return;
+        this.wantsSleepInPlant = wantsSleepInPlant;
+        if (wantsSleepInPlant)
+        {
+            print("Cat wants to sleep in the plant");
+            InvokeRepeating("CatWantsSleepInPlantBehavior", 1, wantsSleepInPlantInterval);
+        }
+        else
+        {
+            print("Cat no longer wants to sleep in the plant");
+            CancelInvoke("CatWantsSleepInPlantBehavior");
+        }
+    }
 
+    public void CatCleaned() 
+    {
+        isBusy = false;
+        agent.isStopped = false;
+        isDoingBehavior = false;
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
 
     public void EatFood()
     {

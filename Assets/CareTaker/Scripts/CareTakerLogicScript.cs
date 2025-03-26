@@ -21,7 +21,7 @@ public class LogicScript : MonoBehaviour
     public GameObject catInBath;
     public GameObject plant;
     public PlayableDirector timeline;
-    [SerializeField] public static int currentLevel = 2;
+    [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
     public SofaScriptCarer sofa;
     public SpongeScript spongeScript;

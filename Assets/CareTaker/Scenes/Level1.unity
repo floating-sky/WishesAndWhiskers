@@ -3306,9 +3306,9 @@ Transform:
   m_GameObject: {fileID: 1571888380}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1215.0668}
-  m_LocalScale: {x: 6.691371, y: 6.2574544, z: 8.655202}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 3.45, z: -1215.0668}
+  m_LocalScale: {x: 8.47, y: 7.9207444, z: 10.955835}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2074765758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3325,6 +3325,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   washBarScript: {fileID: 397570281}
+  bar: {fileID: 397570280}
+  frame1: {fileID: -1499932023038357704, guid: 58d1252f993df68448c37fadf5de138d, type: 3}
+  frame2: {fileID: 2509848912983387252, guid: 58d1252f993df68448c37fadf5de138d, type: 3}
+  frame3: {fileID: -85652802527543771, guid: 58d1252f993df68448c37fadf5de138d, type: 3}
+  frame4: {fileID: -8996299634060453521, guid: 58d1252f993df68448c37fadf5de138d, type: 3}
+  frame5: {fileID: -5465822724809284057, guid: 58d1252f993df68448c37fadf5de138d, type: 3}
 --- !u!1 &1647004921
 GameObject:
   m_ObjectHideFlags: 0

@@ -731,7 +731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &303224617
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1566,8 +1566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06137ce8b9467734cbb7d63c393d70a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level1: {fileID: 11400000, guid: d77bf62c59bfdbc44a7d5e2b393f9955, type: 2}
-  level2: {fileID: 11400000, guid: d5bb9e8cd9ff8814d990c14194dcb0fd, type: 2}
   Cats: []
   controlWindow: {fileID: 332196973}
   finishWindow: {fileID: 1958294683}
@@ -3209,12 +3207,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571888380}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49562988, y: 0.46348968, z: 0.6410908}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1215.0668}
+  m_LocalScale: {x: 6.691371, y: 6.2574544, z: 8.655202}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2074765758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1571888385
 MonoBehaviour:
@@ -3747,6 +3745,7 @@ RectTransform:
   m_Children:
   - {fileID: 600181512}
   - {fileID: 397570279}
+  - {fileID: 1571888384}
   m_Father: {fileID: 1714466402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4141,7 +4140,6 @@ SceneRoots:
   - {fileID: 822267987}
   - {fileID: 546028649}
   - {fileID: 8513681957892353391}
-  - {fileID: 1571888384}
   - {fileID: 1063916324}
   - {fileID: 5505482006922046967}
   - {fileID: 303224618}

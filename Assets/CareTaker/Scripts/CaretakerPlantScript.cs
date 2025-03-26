@@ -12,12 +12,6 @@ public class CaretakerPlantScript : MonoBehaviour
     [SerializeField] private Sprite plantWithCat;
     [SerializeField] private Sprite plantWithoutCat;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        hasCat = false;
-    }
-
     // Update is called once per frame
     void Update()
     {

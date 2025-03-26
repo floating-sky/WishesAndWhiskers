@@ -10,9 +10,6 @@ using UnityEngine.UI;
 
 public class LogicScript : MonoBehaviour
 {
-    public TimelineAsset level1;
-    public TimelineAsset level2;
-
     public CatScript[] Cats;
     public GameObject controlWindow;
     public GameObject finishWindow;
@@ -24,7 +21,7 @@ public class LogicScript : MonoBehaviour
     public GameObject catInBath;
     public GameObject plant;
     public PlayableDirector timeline;
-    [SerializeField] public static int currentLevel = 2;
+    [SerializeField] public static int currentLevel = 1;
     private BarScript Bar;
     public SofaScriptCarer sofa;
     public SpongeScript spongeScript;
@@ -39,7 +36,6 @@ public class LogicScript : MonoBehaviour
         // Setting
         int ind = 0;
         feedCount = 0;
-        timeline.playableAsset = level1;                    // Assign the time line
 
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Cat");
         Cats = new CatScript[gameObjects.Length];
@@ -59,18 +55,15 @@ public class LogicScript : MonoBehaviour
         // Setting of Level 2
         if (currentLevel == 2)
         {
+            
             sponge.SetActive(true);
             plant.SetActive(true);
-            timeline.playableAsset = level2;
             sofa.ChangeView(1);
             firstWashDone = false;
             Cats[0].GoInsidePlant();
+            timeline.Stop();
         }
 
-        // If is level then start the timeline immediately
-        if(currentLevel == 1){
-            timeline.Play();
-        }
         print("currentLevel: " + currentLevel);
     }
 
@@ -151,12 +144,9 @@ public class LogicScript : MonoBehaviour
 
     public void SetCatWantsSleepInPlant()
     {
-        int catInd = UnityEngine.Random.Range(0, Cats.Length);
-
-        // If cat is not thirsty, set it to thirsty
-        if (!Cats[catInd].wantsSleepInPlant)
+        if (currentLevel == 2) 
         {
-            Cats[catInd].SetWantsSleepInPlant(true);
+            
         }
     }
 
@@ -190,9 +180,11 @@ public class LogicScript : MonoBehaviour
     public void spongeLogic()
     {
         spongeScript.setBackPosition();
+        print("setting windows to active");
         spongeWindow.SetActive(true);
         spongeInBath.SetActive(true);
         catInBath.SetActive(true);
+        plant.SetActive(false);
         isBath = true;
     }
 
@@ -205,9 +197,11 @@ public class LogicScript : MonoBehaviour
         {
             firstWashDone = true;
             newMaterialWindow.SetActive(true);
+            timeline.Play();
         }
         Bar.IncreaseProgressBar(0.2f);
         isBath = false;
+        plant.SetActive(true);
         plant.GetComponent<CaretakerPlantScript>().CatLeaves();
     }
 
@@ -215,8 +209,6 @@ public class LogicScript : MonoBehaviour
     {
         newMaterialWindow.SetActive(false);
         sofa.ChangeView(2);
-        timeline.playableAsset = level2;
-        timeline.Play();
     }
 
     private void CheckCatsMeowCount()

@@ -26,6 +26,7 @@ public class CatLogicScript : MonoBehaviour
     private int itemNumber;
     private Boolean isAlreadyPlaySofa = false;
     private Boolean isAlreadyPlayCatClimbing = false;
+    private Boolean isAlreadyPlant = false;
     private Boolean isDialogue = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -127,12 +128,18 @@ public class CatLogicScript : MonoBehaviour
             plant.setIsReady(true);
         }
 
-        if(plant.inTrigger && (currentTasks == 2))
+        if (currentTasks == 3)
+        {
+            catBed.setIsReady(true);
+        }
+
+        if (plant.inTrigger && (currentTasks == 2))
         {
             print("Cat play with plant");
 
             // Tasks
             currentTasks++;
+            isAlreadyPlant = true;
 
             // Dialogues
             dialogueInd = 0;
@@ -140,13 +147,8 @@ public class CatLogicScript : MonoBehaviour
             itemNumber = 2;
             Time.timeScale = 0f;
         }
-        
-        if(currentTasks == 3)
-        {
-            catBed.setIsReady(true);
-        }
 
-        if(catBed.inTrigger && (currentTasks == 3))
+        if(catBed.inTrigger && (currentTasks == 3) && isAlreadyPlant)
         {
             print("Cat play with cat bed");
 

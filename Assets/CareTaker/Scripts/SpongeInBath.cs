@@ -29,7 +29,7 @@ public class SpongeInBath : MonoBehaviour
         }
         if (!isBack)
         {
-            transform.position = new Vector3(xPosition + canvas.transform.position.x, yPosition + canvas.transform.position.y, zPosition + canvas.transform.position.z);
+            transform.position = new Vector3(xPosition, yPosition, zPosition);
             isBack = true;
         }
     }

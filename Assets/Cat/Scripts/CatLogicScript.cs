@@ -205,7 +205,7 @@ public class CatLogicScript : MonoBehaviour
                         text.text = "I’m now the king of this place!";
                         break;
                     case 1:
-                        text.text = "ooo this place is also a really good spot to sleep but it’s currently too cold. I need to find another spot";
+                        text.text = "ooo this place is also a really good spot to sleep but it’s too cold right now. I need to find another spot";
                         break;
                     case 2:
                         isDialogue = false;
@@ -291,13 +291,13 @@ public class CatLogicScript : MonoBehaviour
                         text.text = "Maybe I can sleep here again Meow!";
                         break;
                     case 1:
-                        text.text = "Wait, if I sleep here...the morning thing going to happen again!?";
+                        text.text = "Wait, if I sleep here...is that thing going to happen again!?";
                         break;
                     case 2:
-                        text.text = "That is a nightmare...";
+                        text.text = "That was a nightmare...";
                         break;
                     case 3:
-                        text.text = "Let find another place to sleep meow...";
+                        text.text = "Maybe I should find another place to sleep meow...";
                         break;
                     case 4:
                         isDialogue = false;
@@ -318,7 +318,7 @@ public class CatLogicScript : MonoBehaviour
                         text.text = "I think they must’ve gotten this bed for me to sleep in!";
                         break;
                     case 1:
-                        text.text = "Yay I can now sleep in a cozy and comfortable spot";
+                        text.text = "Yay now I have a nice warm place to sleep";
                         break;
                     case 2:
                         isDialogue = false;

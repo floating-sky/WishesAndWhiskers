@@ -14,8 +14,9 @@ public class CatLogicScript : MonoBehaviour
     public GameObject sofaEButton;
     public GameObject catClimbingEButton;
     public GameObject plantEButton;
+    public GameObject catBedEButton;
     public GameObject cat;
-    [SerializeField] public static int currentLevel = 0;
+    [SerializeField] public static int currentLevel = 2;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
     [SerializeField] private PlantScript plant;
@@ -66,8 +67,21 @@ public class CatLogicScript : MonoBehaviour
 
         if(isDialogue && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)) )
         {
+            print("in dialogue");
             dialogueTextProcess();
             dialogueInd++;
+        }
+
+        // Night Level 1 lock on Plant
+        if (!isAlreadyPlant && currentLevel == 1 && currentTasks == 2)
+        {
+            plant.setIsReady(true);
+        }
+
+        // Unlock the plant on Night level 2
+        if (!isAlreadyPlant && currentLevel == 2)
+        {
+            plant.setIsReady(true);
         }
     }
 
@@ -88,7 +102,9 @@ public class CatLogicScript : MonoBehaviour
 
     public void CatInteracted()
     {
-        // If cat is in the area of sofa
+        print("interacted");
+
+        // Sofa, If cat is in the area of sofa
         if(!isAlreadyPlaySofa && sofa.inTrigger)
         {
             print("Cat play with sofa");
@@ -104,9 +120,8 @@ public class CatLogicScript : MonoBehaviour
             itemNumber = 0;
             Time.timeScale = 0f;
         }
-
-        // If cat is in the area of cat climbing
-        if(!isAlreadyPlayCatClimbing && catClimbing.inTrigger)
+        // Cat Tree, If cat is in the area of cat climbing
+        else if(!isAlreadyPlayCatClimbing && catClimbing.inTrigger)
         {
             print("Cat play with cat climbing");
 
@@ -121,25 +136,15 @@ public class CatLogicScript : MonoBehaviour
             itemNumber = 1;
             Time.timeScale = 0f;
         }
-
-        // After player played sofa and cat tree, it ready to play with plant
-        if(currentTasks == 2)
-        {
-            plant.setIsReady(true);
-        }
-
-        if (currentTasks == 3)
-        {
-            catBed.setIsReady(true);
-        }
-
-        if (plant.inTrigger && (currentTasks == 2))
+        // Plant, After player played sofa and cat tree, it ready to play with plant
+        else if (plant.inTrigger && plant.getIsReady() && !isAlreadyPlant)
         {
             print("Cat play with plant");
 
             // Tasks
             currentTasks++;
             isAlreadyPlant = true;
+            plant.setIsAlreadyPlant(true);
 
             // Dialogues
             dialogueInd = 0;
@@ -147,19 +152,26 @@ public class CatLogicScript : MonoBehaviour
             itemNumber = 2;
             Time.timeScale = 0f;
         }
-
-        if(catBed.inTrigger && (currentTasks == 3) && isAlreadyPlant)
+        // Cat bed,
+        else if (catBed.inTrigger && catBed.getIsReady() && isAlreadyPlant)
         {
             print("Cat play with cat bed");
 
             // Tasks
             currentTasks++;
+            catBed.setIsAlreadyCatBed(true);
 
             // Dialogues
             dialogueInd = 0;
             isDialogue = true;
             itemNumber = 3;
             Time.timeScale = 0f;
+        }
+
+        // Cat bed lock
+        if (currentTasks == 3)
+        {
+            catBed.setIsReady(true);
         }
     }
 
@@ -211,6 +223,7 @@ public class CatLogicScript : MonoBehaviour
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         catClimbingEButton.SetActive(false);
+                        plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
                         Time.timeScale = 1f;
                         break;
                 }
@@ -251,7 +264,7 @@ public class CatLogicScript : MonoBehaviour
                     case 1:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
-                        plantEButton.SetActive(false);
+                        sofaEButton.SetActive(false);
                         Time.timeScale = 1f;
                         break;
                 }
@@ -275,7 +288,7 @@ public class CatLogicScript : MonoBehaviour
                     case 3:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
-                        plantEButton.SetActive(false);
+                        catClimbingEButton.SetActive(false);
                         Time.timeScale = 1f;
                         break;
                 }
@@ -303,6 +316,7 @@ public class CatLogicScript : MonoBehaviour
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         plantEButton.SetActive(false);
+                        catBed.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
                         Time.timeScale = 1f;
                         break;
                 }
@@ -323,7 +337,7 @@ public class CatLogicScript : MonoBehaviour
                     case 2:
                         isDialogue = false;
                         dialogueObject.SetActive(false);
-                        plantEButton.SetActive(false);
+                        catBedEButton.SetActive(false);
                         Time.timeScale = 1f;
                         break;
                 }

@@ -40,7 +40,7 @@ public class ControlCatScript : MonoBehaviour
             transform.position = position;
 
             // Interact keyboard inputs
-            if (Input.GetKey(KeyCode.E))                         // Interact items
+            if (Input.GetKeyDown(KeyCode.E))                         // Interact items
             {
                 catLogic.CatInteracted();
             }

@@ -1834,6 +1834,7 @@ MonoBehaviour:
   sofaEButton: {fileID: 1621949131}
   catClimbingEButton: {fileID: 1578755158}
   plantEButton: {fileID: 1602708742}
+  catBedEButton: {fileID: 1894786622}
   cat: {fileID: 367419223}
   sofa: {fileID: 1919288313}
   catClimbing: {fileID: 1313738429}

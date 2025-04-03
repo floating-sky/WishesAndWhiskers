@@ -6,6 +6,7 @@ public class CatBedScript : MonoBehaviour
     [SerializeField] public Boolean inTrigger = false;
     public GameObject eButton;
     private Boolean isReady;
+    private Boolean isAlreadyCatBed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,16 +19,26 @@ public class CatBedScript : MonoBehaviour
     {
         
     }
+
+    public Boolean getIsReady()
+    {
+        return isReady;
+    }
     
     public void setIsReady(Boolean value)
     {
         isReady = value;
     }
 
+    public void setIsAlreadyCatBed(Boolean value)
+    {
+        isAlreadyCatBed = value;
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         inTrigger = true;
-        if(isReady)
+        if(!isAlreadyCatBed && isReady)
         {
             eButton.SetActive(true);
         }

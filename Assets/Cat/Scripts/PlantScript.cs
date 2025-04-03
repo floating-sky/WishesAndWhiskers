@@ -7,6 +7,7 @@ public class PlantScript : MonoBehaviour
     [SerializeField] private Sprite catInPlant;
     public GameObject eButton;
     private Boolean isReady;
+    private Boolean isAlreadyPlant;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,9 +21,19 @@ public class PlantScript : MonoBehaviour
         
     }
 
+    public Boolean getIsReady()
+    {
+        return isReady;
+    }
+
     public void setIsReady(Boolean value)
     {
         isReady = value;
+    }
+
+    public void setIsAlreadyPlant(Boolean value)
+    {
+        isAlreadyPlant = value;
     }
 
     public void changeView(int ind){
@@ -37,7 +48,7 @@ public class PlantScript : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         inTrigger = true;
-        if(isReady)
+        if(!isAlreadyPlant && isReady)
         {
             eButton.SetActive(true);
         }

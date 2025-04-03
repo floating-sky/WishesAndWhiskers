@@ -147,10 +147,10 @@ TextureImporter:
       name: Food_tilt_0
       rect:
         serializedVersion: 2
-        x: 303
-        y: 468
-        width: 45
-        height: 48
+        x: 0
+        y: 0
+        width: 1000
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,143 +165,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Food_tilt_1
-      rect:
-        serializedVersion: 2
-        x: 308
-        y: 173
-        width: 644
-        height: 618
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8d4da344762b7680800000000000000
-      internalID: -8756362769698304628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Food_tilt_2
-      rect:
-        serializedVersion: 2
-        x: 251
-        y: 361
-        width: 105
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3cf2f6899c3c137d0800000000000000
-      internalID: -2940353811082956861
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Food_tilt_3
-      rect:
-        serializedVersion: 2
-        x: 262
-        y: 283
-        width: 102
-        height: 87
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d5215314c3bcb2e10800000000000000
-      internalID: 2174054704788869725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Food_tilt_4
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 317
-        width: 37
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 54268c43c2e82aec0800000000000000
-      internalID: -3557124435154017723
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Food_tilt_5
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 239
-        width: 38
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6bc17aeef2d0b1c20800000000000000
-      internalID: 3178148461558570166
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Food_tilt_6
-      rect:
-        serializedVersion: 2
-        x: 306
-        y: 167
-        width: 45
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 922bae30ce2bca4f0800000000000000
-      internalID: -816080705713163735
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dcb0cf9430d705648ab67cd0d96f4901
     internalID: 0
     vertices: []
     indices: 
@@ -312,12 +180,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Food_tilt_0: 382618858094096560
-      Food_tilt_1: -8756362769698304628
-      Food_tilt_2: -2940353811082956861
-      Food_tilt_3: 2174054704788869725
-      Food_tilt_4: -3557124435154017723
-      Food_tilt_5: 3178148461558570166
-      Food_tilt_6: -816080705713163735
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -91,6 +91,16 @@ public class CatLogicScript : MonoBehaviour
         print("before change cat level current level: " + LogicScript.currentLevel);
         LogicScript.currentLevel += 1;
         print("after add cat level current level: " + LogicScript.currentLevel);
+
+        // Back to main menu
+        if(currentLevel == 2){
+            print("Back to main menu");
+            currentLevel = 0;
+            LogicScript.currentLevel = 1;
+            SceneManager.LoadScene(0);
+            return;
+        }
+
         SceneManager.LoadScene(1);
     }
 
@@ -202,7 +212,6 @@ public class CatLogicScript : MonoBehaviour
                         {
                             print("Plant unlock");
                             plant.setIsReady(true);
-                            plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
                         }
                         Time.timeScale = 1f;
                         break;
@@ -231,7 +240,10 @@ public class CatLogicScript : MonoBehaviour
                         {
                             print("Plant unlock");
                             plant.setIsReady(true);
-                            plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
+                            float xPos = cat.GetComponent<Transform>().position.x;
+                            if(xPos >= 10f && xPos <= 11.5f){
+                                plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
+                            }
                         }
                         Time.timeScale = 1f;
                         break;

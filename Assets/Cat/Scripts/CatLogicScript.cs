@@ -16,7 +16,7 @@ public class CatLogicScript : MonoBehaviour
     public GameObject plantEButton;
     public GameObject catBedEButton;
     public GameObject cat;
-    [SerializeField] public static int currentLevel = 2;
+    [SerializeField] public static int currentLevel = 0;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
     [SerializeField] private PlantScript plant;
@@ -70,12 +70,6 @@ public class CatLogicScript : MonoBehaviour
             print("in dialogue");
             dialogueTextProcess();
             dialogueInd++;
-        }
-
-        // Night Level 1 lock on Plant
-        if (!isAlreadyPlant && currentLevel == 1 && currentTasks == 2)
-        {
-            plant.setIsReady(true);
         }
 
         // Unlock the plant on Night level 2
@@ -202,6 +196,14 @@ public class CatLogicScript : MonoBehaviour
                         dialogueObject.SetActive(false);
                         sofaEButton.SetActive(false);
                         sofa.changeView(1);
+
+                        // Night Level 1 lock on Plant
+                        if (!isAlreadyPlant && currentLevel == 1 && currentTasks == 2 && !isDialogue)
+                        {
+                            print("Plant unlock");
+                            plant.setIsReady(true);
+                            plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
+                        }
                         Time.timeScale = 1f;
                         break;
                 }
@@ -223,7 +225,14 @@ public class CatLogicScript : MonoBehaviour
                         isDialogue = false;
                         dialogueObject.SetActive(false);
                         catClimbingEButton.SetActive(false);
-                        plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
+                        
+                        // Night Level 1 lock on Plant
+                        if (!isAlreadyPlant && currentLevel == 1 && currentTasks == 2 && !isDialogue)
+                        {
+                            print("Plant unlock");
+                            plant.setIsReady(true);
+                            plant.OnTriggerEnter2D(cat.GetComponent<BoxCollider2D>());
+                        }
                         Time.timeScale = 1f;
                         break;
                 }

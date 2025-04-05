@@ -4092,7 +4092,7 @@ PrefabInstance:
     - target: {fileID: 7690791255838012014, guid: 326043365b306e34ea9d52f333286fca, type: 3}
       propertyPath: dropingFood
       value: 
-      objectReference: {fileID: -8756362769698304628, guid: 6f6d15cdc19a11e42a26d6e9c8149645, type: 3}
+      objectReference: {fileID: 382618858094096560, guid: 6f6d15cdc19a11e42a26d6e9c8149645, type: 3}
     - target: {fileID: 7822085060934960006, guid: 326043365b306e34ea9d52f333286fca, type: 3}
       propertyPath: logic
       value: 

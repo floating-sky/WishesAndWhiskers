@@ -8,6 +8,8 @@ public class BarScript : MonoBehaviour
     public float decreaseSpeed;
     public Boolean isFeedTwice;                            // After the feed the cat twice, fail statement apply
     private Slider bar;
+    private float difference;
+    private float threshold = 0.005f;
     [SerializeField] private float targetProcess;
 
     private void Awake()
@@ -18,7 +20,7 @@ public class BarScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        increaseSpeed = 0.4f;
+        increaseSpeed = 0.2f;
         decreaseSpeed = 0.05f;
         isFeedTwice = false;
     }
@@ -26,14 +28,21 @@ public class BarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bar.value <= targetProcess)
-        {
-            bar.value += increaseSpeed * Time.deltaTime;
-        }
+        difference = Mathf.Abs(bar.value - targetProcess);
 
-        if (bar.value > targetProcess)
+        if(difference > threshold){
+            if (bar.value < targetProcess)
+            {
+                bar.value += increaseSpeed * Time.deltaTime;
+            }
+            else if (bar.value > targetProcess)
+            {
+                bar.value -= decreaseSpeed * Time.deltaTime;
+            }
+        }
+        else
         {
-            bar.value -= decreaseSpeed * Time.deltaTime;
+            bar.value = targetProcess;
         }
     }
 

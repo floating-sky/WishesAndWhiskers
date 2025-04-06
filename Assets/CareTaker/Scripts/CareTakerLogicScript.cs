@@ -25,6 +25,7 @@ public class LogicScript : MonoBehaviour
     private BarScript Bar;
     public SofaScriptCarer sofa;
     public SpongeScript spongeScript;
+    public SettingWindowScript settingWindowScript;
     public Boolean isBath = false;
     [SerializeField] private BarScript WashBar;
     private int feedCount;
@@ -181,7 +182,9 @@ public class LogicScript : MonoBehaviour
 
     public void Resume()
     {
-        Time.timeScale = 1f;
+        if(!settingWindowScript.getIsSettingWindow()){
+            Time.timeScale = 1f;
+        }
         controlWindow.SetActive(false);
     }
 

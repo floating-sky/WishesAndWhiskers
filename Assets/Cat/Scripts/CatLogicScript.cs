@@ -16,6 +16,7 @@ public class CatLogicScript : MonoBehaviour
     public GameObject plantEButton;
     public GameObject catBedEButton;
     public GameObject cat;
+    public SettingWindowScript settingWindowScript;
     [SerializeField] public static int currentLevel = 0;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
@@ -81,7 +82,10 @@ public class CatLogicScript : MonoBehaviour
 
     public void Resume()
     {
-        Time.timeScale = 1f;
+        if (!settingWindowScript.getIsSettingWindow())
+        {
+            Time.timeScale = 1f;
+        }
         controlWindow.SetActive(false);
     }
 

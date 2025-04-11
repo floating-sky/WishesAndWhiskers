@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using static UnityEngine.GraphicsBuffer;
 
 public class CatScript : MonoBehaviour
@@ -35,11 +36,11 @@ public class CatScript : MonoBehaviour
     public Boolean isDoingBehavior = false;
 
     public int moveRadius = 6; // How far from their current position the cat will move when they move to a random point
-    public int hungryMeowInterval = 10; // Seconds between each meow the cat makes when they are hungry
-    public int thirstyMeowInterval = 10;
-    public int wantsPlayInterval = 8;
-    public int randomMovementInterval = 6; // Seconds between each time the cat moves to a random location
-    public int wantsSleepInPlantInterval = 6;
+    public float hungryMeowInterval; // Seconds between each meow the cat makes when they are hungry
+    public float thirstyMeowInterval;
+    public float wantsPlayInterval;
+    public float randomMovementInterval; // Seconds between each time the cat moves to a random location
+    public float wantsSleepInPlantInterval;
 
     private Vector2 velocity;
 
@@ -61,21 +62,6 @@ public class CatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position != lastPos)
-        {
-            velocity = agent.velocity.normalized;
-            if (velocity.x < 0)
-                animator.SetBool("isWalkingLeft", true);
-            else
-                animator.SetBool("isWalkingRight", true);
-        }
-        else
-        {
-            animator.SetBool("isWalkingLeft", false);
-            animator.SetBool("isWalkingRight", false);
-        }
-        lastPos = transform.position;
-
         if ((isWalkingToFoodBowl || isWalkingToWaterBowl) && bowlIsDest && Vector3.Distance(transform.position, agent.destination) <= 1)
         {
             bowlIsDest = false;
@@ -85,11 +71,14 @@ public class CatScript : MonoBehaviour
             StartCoroutine(WaitForEatingDrinkingAnimation(4f));
         }
 
-        if (isWalkingToPlant && Vector3.Distance(transform.position, agent.destination) <= 1) 
+        if (isWalkingToPlant && Vector3.Distance(transform.position, agent.destination) <= 1)
         {
             GoInsidePlant();
         }
+    }
 
+    private void FixedUpdate()
+    {
         if (inTrigger)
         {
             // toy
@@ -101,6 +90,30 @@ public class CatScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (transform.position != lastPos)
+        {
+            if (lastPos.x > transform.position.x)
+            {
+                animator.SetBool("isWalkingLeft", true);
+                animator.SetBool("isWalkingRight", false);
+            }
+            else
+            {
+                animator.SetBool("isWalkingRight", true);
+                animator.SetBool("isWalkingLeft", false);
+            }
+
+        }
+        else
+        {
+            animator.SetBool("isWalkingLeft", false);
+            animator.SetBool("isWalkingRight", false);
+        }
+        lastPos = transform.position;
     }
 
     IEnumerator WaitForEatingDrinkingAnimation(float seconds)
@@ -128,6 +141,7 @@ public class CatScript : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         agent.isStopped = false;
         isBusy = false;
+        isDoingBehavior = false;
         animator.SetBool("isWantingPlay", false);
     }
 
@@ -151,6 +165,7 @@ public class CatScript : MonoBehaviour
     {
         if (!isBusy && !isDoingBehavior)
         {
+            print("MOVING CAT");
             agent.SetDestination(GetRandomNavmeshLocation(moveRadius));
         }
     }
@@ -191,9 +206,9 @@ public class CatScript : MonoBehaviour
         {
             isDoingBehavior = true;
             agent.isStopped = true;
-            float secondsToWait = 2f;
+            //float secondsToWait = 2f;
             animator.SetBool("isWantingPlay", true);
-            StartCoroutine(WaitForAnimation(secondsToWait, "isWantingPlay"));
+            // StartCoroutine(WaitForAnimation(secondsToWait, "isWantingPlay"));
             print("Cat wants to play");
         }
     }
@@ -347,7 +362,7 @@ public class CatScript : MonoBehaviour
 
     public void Play() 
     {
-        if (!isBusy && wantsPlay)
+        if (wantsPlay)
         {
             isBusy = true;
             agent.isStopped = true;

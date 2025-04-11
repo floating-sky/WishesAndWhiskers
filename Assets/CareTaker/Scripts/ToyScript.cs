@@ -12,6 +12,7 @@ public class ToyScript : MonoBehaviour
     public LogicScript logic;
     [SerializeField] private Boolean isBack = true;
     [SerializeField] private Sprite toy;
+    [SerializeField] private Sprite movingToy;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +39,16 @@ public class ToyScript : MonoBehaviour
                 isBack = true;
             }
         }
+    }
+
+    public void changeToy()
+    {
+        GetComponent<SpriteRenderer>().sprite = toy;
+    }
+
+    public void changeMovingToy()
+    {
+        GetComponent<SpriteRenderer>().sprite = movingToy;
     }
 
     private void OnMouseDown()

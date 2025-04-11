@@ -3998,6 +3998,7 @@ MonoBehaviour:
   logic: {fileID: 546028648}
   isBack: 1
   toy: {fileID: 804290218697800477, guid: 24bb9980d12f2b242a1866ba3c8935bd, type: 3}
+  movingToy: {fileID: -8693839623294802663, guid: 2c19636abafa09949ae92255b27e42bb, type: 3}
 --- !u!1 &1059340182
 GameObject:
   m_ObjectHideFlags: 0
@@ -6747,6 +6748,10 @@ PrefabInstance:
       propertyPath: isBusy
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5206543399031134371, guid: 1fd2539912553f7429e71ff366ed4570, type: 3}
+      propertyPath: toyScript
+      value: 
+      objectReference: {fileID: 1041385071}
     - target: {fileID: 5206543399031134371, guid: 1fd2539912553f7429e71ff366ed4570, type: 3}
       propertyPath: moveRadius
       value: 8

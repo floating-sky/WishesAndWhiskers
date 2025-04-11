@@ -14,6 +14,8 @@ public class CatScript : MonoBehaviour
     [SerializeField] GameObject bowls;
     [SerializeField] GameObject plant;
 
+    public ToyScript toyScript;
+
     private Boolean isWalkingToFoodBowl = false;
     private Boolean isWalkingToWaterBowl = false;
     private Boolean isWalkingToPlant = false;
@@ -84,11 +86,16 @@ public class CatScript : MonoBehaviour
             // toy
             if (inputObject.gameObject.layer == 9)
             {
+                toyScript.changeMovingToy();
                 if (Input.GetMouseButtonUp(0) && wantsPlay)                     // if mouse released and bowl doesn't have food, add food 
                 {
                     Play();
                 }
             }
+        }
+        else
+        {
+            toyScript.changeToy();
         }
     }
 

@@ -11,6 +11,8 @@ using UnityEngine.UI;
 public class LogicScript : MonoBehaviour
 {
     public CatScript[] Cats;
+    public GameObject pawsArt;
+    public GameObject duckyArt;
     public GameObject controlWindow;
     public GameObject finishWindow;
     public TMP_Text finishText;
@@ -57,7 +59,7 @@ public class LogicScript : MonoBehaviour
         // Setting of Level 2
         if (currentLevel == 2)
         {
-            
+            pawsArt.SetActive(true);
             sponge.SetActive(true);
             plant.SetActive(true);
             sofa.ChangeView(1);
@@ -214,6 +216,7 @@ public class LogicScript : MonoBehaviour
         isBath = false;
         plant.SetActive(true);
         plant.GetComponent<CaretakerPlantScript>().CatLeaves();
+        duckyArt.SetActive(true);
     }
 
     public void newMaterialWindowLogic()

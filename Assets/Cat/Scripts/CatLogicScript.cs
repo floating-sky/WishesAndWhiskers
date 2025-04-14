@@ -96,6 +96,10 @@ public class CatLogicScript : MonoBehaviour
         LogicScript.currentLevel += 1;
         print("after add cat level current level: " + LogicScript.currentLevel);
 
+        if(currentLevel == 1){
+            SceneManager.LoadScene(4);
+        }
+
         // Back to main menu
         if(currentLevel == 2){
             print("Back to main menu");
@@ -104,8 +108,6 @@ public class CatLogicScript : MonoBehaviour
             SceneManager.LoadScene(0);
             return;
         }
-
-        SceneManager.LoadScene(1);
     }
 
     public void CatInteracted()

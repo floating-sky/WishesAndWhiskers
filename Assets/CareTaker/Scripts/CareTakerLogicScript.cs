@@ -29,6 +29,7 @@ public class LogicScript : MonoBehaviour
     public SpongeScript spongeScript;
     public SettingWindowScript settingWindowScript;
     public Boolean isBath = false;
+    public static Boolean isCutSceneOver = false;
     [SerializeField] private BarScript WashBar;
     private int feedCount;
     Boolean firstWashDone;
@@ -116,7 +117,15 @@ public class LogicScript : MonoBehaviour
             if (WashBar.getValue() >= 1.0)
             {
                 spongeLogicEnd();
+                isBath = false;
             }
+        }
+
+        // Cut Scene
+        if(isCutSceneOver)
+        {
+            cutSceneOver();
+            isCutSceneOver = false;
         }
     }
 
@@ -203,6 +212,10 @@ public class LogicScript : MonoBehaviour
 
     public void spongeLogicEnd()
     {
+        SceneManager.LoadScene(4, LoadSceneMode.Additive);
+    }
+
+    public void cutSceneOver(){
         spongeWindow.SetActive(false);
         spongeInBath.SetActive(false);
         catInBath.SetActive(false);

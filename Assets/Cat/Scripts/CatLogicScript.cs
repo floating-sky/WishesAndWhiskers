@@ -10,6 +10,7 @@ public class CatLogicScript : MonoBehaviour
     public TMP_Text text;
     public GameObject finishWindow;
     public TMP_Text finishText;
+    public TMP_Text finishButtonText;
     public GameObject controlWindow;
     public GameObject sofaEButton;
     public GameObject catClimbingEButton;
@@ -35,6 +36,7 @@ public class CatLogicScript : MonoBehaviour
     void Start()
     {
         targetTasks = 3;
+        finishButtonText.text = "Next Level";
         sofa = GameObject.FindGameObjectWithTag("Sofa").GetComponent<SofaScript>();
         catClimbing = GameObject.FindGameObjectWithTag("CatClimbing").GetComponent<CatClimbingScript>();
         plant = GameObject.FindGameObjectWithTag("Plant").GetComponent<PlantScript>();
@@ -44,7 +46,8 @@ public class CatLogicScript : MonoBehaviour
         {
             targetTasks = 4;
             sofa.changeView(2);
-            finishText.text = "Night 2 complete";
+            finishText.text = "Thank you for Playing!!!";
+            finishButtonText.text = "Main Menu";
             catBed.gameObject.SetActive(true);
             catBed = GameObject.FindGameObjectWithTag("CatBed").GetComponent<CatBedScript>();
         }
@@ -96,10 +99,6 @@ public class CatLogicScript : MonoBehaviour
         LogicScript.currentLevel += 1;
         print("after add cat level current level: " + LogicScript.currentLevel);
 
-        if(currentLevel == 1){
-            SceneManager.LoadScene(4);
-        }
-
         // Back to main menu
         if(currentLevel == 2){
             print("Back to main menu");
@@ -108,6 +107,7 @@ public class CatLogicScript : MonoBehaviour
             SceneManager.LoadScene(0);
             return;
         }
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     public void CatInteracted()

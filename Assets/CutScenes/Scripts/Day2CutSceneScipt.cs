@@ -32,6 +32,7 @@ public class Day2CutSceneScipt : MonoBehaviour
 
     public void endScene()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.UnloadSceneAsync(4);
+        LogicScript.isCutSceneOver = true;
     }
 }

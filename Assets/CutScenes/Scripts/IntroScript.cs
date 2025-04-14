@@ -9,8 +9,8 @@ public class CanvasScript : MonoBehaviour
     private int sceneCounter = 0;
     [SerializeField] private GameObject dialogue;
     [SerializeField] private GameObject Scene;
+    [SerializeField] private GameObject Scene3;
     [SerializeField] private Sprite scene1;
-    [SerializeField] private Sprite scene2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +32,8 @@ public class CanvasScript : MonoBehaviour
                 Scene.GetComponent<SpriteRenderer>().sprite = scene1;
                 break;
             case 2:
-                Scene.GetComponent<SpriteRenderer>().sprite = scene2;
+                Scene.SetActive(false);
+                Scene3.SetActive(true);
                 dialogue.SetActive(true);
                 break;
             case 3:

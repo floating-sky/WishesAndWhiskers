@@ -149,7 +149,7 @@ public class CatScript : MonoBehaviour
         agent.isStopped = false;
         isBusy = false;
         isDoingBehavior = false;
-        animator.SetBool("isWantingPlay", false);
+        animator.SetBool("isPlaying", false);
     }
 
 
@@ -373,8 +373,9 @@ public class CatScript : MonoBehaviour
         {
             isBusy = true;
             agent.isStopped = true;
-            float secondsToWait = 3f;
-            animator.SetBool("isWantingPlay", true); //  !! CHANGE TO isPlaying WHEN ANIMATION IS DONE !!
+            float secondsToWait = 4f;
+            animator.SetBool("isWantingPlay", false);
+            animator.SetBool("isPlaying", true);
             StartCoroutine(WaitForPlayingAnimation(secondsToWait));
             print("cat is playing!");
             SetWantsPlay(false);

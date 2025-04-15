@@ -213,6 +213,9 @@ public class LogicScript : MonoBehaviour
     public void spongeLogicEnd()
     {
         SceneManager.LoadScene(4, LoadSceneMode.Additive);
+        spongeWindow.SetActive(false);
+        spongeInBath.SetActive(false);
+        catInBath.SetActive(false);
     }
 
     public void cutSceneOver(){

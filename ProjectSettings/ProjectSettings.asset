@@ -855,7 +855,13 @@ PlayerSettings:
   XboxOneOverrideIdentityName: 
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -877,11 +883,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: cb7d0ab5-5dc0-4787-8e51-e16252c72384
+  cloudProjectId: 408a0216-51f9-4c56-ad2f-8f2cd28fe3eb
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: WishesAndWhiskers 2025-01-21_11-55-40
-  organizationId: floatingsky03
+  projectName: WishesAndWhiskers
+  organizationId: starmoonl
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Microsoft.Unity.VisualStudio.Editor;
 
 public class CanvasScript : MonoBehaviour
 {

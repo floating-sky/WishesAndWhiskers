@@ -50,9 +50,4 @@ public class SpongeInBath : MonoBehaviour
         dragging = false;
         isBack = false;
     }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("enter in sponge");
-    }
 }

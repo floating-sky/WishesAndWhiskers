@@ -66,11 +66,8 @@ public class LogicScript : MonoBehaviour
             sofa.ChangeView(1);
             firstWashDone = false;
             catNeedsToGoInPlant = true;
-            print("GETTING SET TO TRUE");
             timeline.Stop();
         }
-
-        print("currentLevel: " + currentLevel);
     }
 
     // Update is called once per frame
@@ -102,7 +99,6 @@ public class LogicScript : MonoBehaviour
 
         if (Bar.getValue() < 0.0 && Bar.isFeedTwice)
         {
-            print("Level 1 fail");
             Time.timeScale = 0.0f;
             Application.Quit();
         }
@@ -202,7 +198,6 @@ public class LogicScript : MonoBehaviour
     public void spongeLogic()
     {
         spongeScript.setBackPosition();
-        print("setting windows to active");
         spongeWindow.SetActive(true);
         spongeInBath.SetActive(true);
         catInBath.SetActive(true);

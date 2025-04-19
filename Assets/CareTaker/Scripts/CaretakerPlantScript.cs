@@ -24,7 +24,6 @@ public class CaretakerPlantScript : MonoBehaviour
                 // Check the input object is sponge
                 if (inputObject.gameObject.layer == 7 && hasCat)
                 {
-                    print("sponge");
                     logicScript.spongeLogic();
                 }
             }
@@ -47,7 +46,6 @@ public class CaretakerPlantScript : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        print("enter");
         inTrigger = true;
         inputObject = collision;
     }

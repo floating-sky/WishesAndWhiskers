@@ -102,7 +102,6 @@ public class BowlsScript : MonoBehaviour
         // Cat has ate food
         if(!hasFood)
         {
-            print("food run");
             logicScript.CatAteFoodORWater();
         }
     }
@@ -114,14 +113,12 @@ public class BowlsScript : MonoBehaviour
         // Cat has drink water
         if(!hasWater)
         {
-            print("water run");
             logicScript.CatAteFoodORWater();
         }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        print("enter");
         inTrigger = true;
         inputObject = collision;
     }

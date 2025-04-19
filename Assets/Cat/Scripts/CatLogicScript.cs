@@ -8,9 +8,8 @@ public class CatLogicScript : MonoBehaviour
 {
     public GameObject dialogueObject;
     public TMP_Text text;
+    public GameObject nextWindow;
     public GameObject finishWindow;
-    public TMP_Text finishText;
-    public TMP_Text finishButtonText;
     public GameObject controlWindow;
     public GameObject sofaEButton;
     public GameObject catClimbingEButton;
@@ -36,7 +35,6 @@ public class CatLogicScript : MonoBehaviour
     void Start()
     {
         targetTasks = 3;
-        finishButtonText.text = "Next Level";
         sofa = GameObject.FindGameObjectWithTag("Sofa").GetComponent<SofaScript>();
         catClimbing = GameObject.FindGameObjectWithTag("CatClimbing").GetComponent<CatClimbingScript>();
         plant = GameObject.FindGameObjectWithTag("Plant").GetComponent<PlantScript>();
@@ -46,15 +44,12 @@ public class CatLogicScript : MonoBehaviour
         {
             targetTasks = 4;
             sofa.changeView(2);
-            finishText.text = "Thank you for Playing!!!";
-            finishButtonText.text = "Main Menu";
             catBed.gameObject.SetActive(true);
             catBed = GameObject.FindGameObjectWithTag("CatBed").GetComponent<CatBedScript>();
         }
 
         Time.timeScale = 0f;
         controlWindow.SetActive(true);
-        print("current: " + currentLevel);
     }
 
     // Update is called once per frame
@@ -65,13 +60,20 @@ public class CatLogicScript : MonoBehaviour
             // Check does the cat has complete all the tasks
             if(currentTasks >= targetTasks && !isDialogue)
             {
-                finishWindow.SetActive(true);
+                switch(currentLevel)
+                {
+                    case 1:
+                        nextWindow.SetActive(true);
+                        break;
+                    case 2:
+                        finishWindow.SetActive(true);
+                        break;
+                }
             }
         }
 
         if(isDialogue && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Space)) )
         {
-            print("in dialogue");
             dialogueTextProcess();
             dialogueInd++;
         }
@@ -95,13 +97,10 @@ public class CatLogicScript : MonoBehaviour
     public void nextLevel()
     {
         // Add care taker level
-        print("before change cat level current level: " + LogicScript.currentLevel);
         LogicScript.currentLevel += 1;
-        print("after add cat level current level: " + LogicScript.currentLevel);
 
         // Back to main menu
         if(currentLevel == 2){
-            print("Back to main menu");
             currentLevel = 0;
             LogicScript.currentLevel = 1;
             SceneManager.LoadScene(0);
@@ -112,13 +111,10 @@ public class CatLogicScript : MonoBehaviour
 
     public void CatInteracted()
     {
-        print("interacted");
 
         // Sofa, If cat is in the area of sofa
         if(!isAlreadyPlaySofa && sofa.inTrigger)
         {
-            print("Cat play with sofa");
-
             // Tasks
             currentTasks++;
             isAlreadyPlaySofa = true;
@@ -133,8 +129,6 @@ public class CatLogicScript : MonoBehaviour
         // Cat Tree, If cat is in the area of cat climbing
         else if(!isAlreadyPlayCatClimbing && catClimbing.inTrigger)
         {
-            print("Cat play with cat climbing");
-
             // Tasks
             currentTasks++;
             isAlreadyPlayCatClimbing = true;
@@ -149,8 +143,6 @@ public class CatLogicScript : MonoBehaviour
         // Plant, After player played sofa and cat tree, it ready to play with plant
         else if (plant.inTrigger && plant.getIsReady() && !isAlreadyPlant)
         {
-            print("Cat play with plant");
-
             // Tasks
             currentTasks++;
             isAlreadyPlant = true;
@@ -165,8 +157,6 @@ public class CatLogicScript : MonoBehaviour
         // Cat bed,
         else if (catBed.inTrigger && catBed.getIsReady() && isAlreadyPlant)
         {
-            print("Cat play with cat bed");
-
             // Tasks
             currentTasks++;
             catBed.setIsAlreadyCatBed(true);
@@ -216,7 +206,6 @@ public class CatLogicScript : MonoBehaviour
                         // Night Level 1 lock on Plant
                         if (!isAlreadyPlant && currentLevel == 1 && currentTasks == 2 && !isDialogue)
                         {
-                            print("Plant unlock");
                             plant.setIsReady(true);
                         }
                         Time.timeScale = 1f;
@@ -244,7 +233,6 @@ public class CatLogicScript : MonoBehaviour
                         // Night Level 1 lock on Plant
                         if (!isAlreadyPlant && currentLevel == 1 && currentTasks == 2 && !isDialogue)
                         {
-                            print("Plant unlock");
                             plant.setIsReady(true);
                             float xPos = cat.GetComponent<Transform>().position.x;
                             if(xPos >= 10f && xPos <= 11.5f){

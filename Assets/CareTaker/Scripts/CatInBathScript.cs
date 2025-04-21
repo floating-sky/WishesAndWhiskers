@@ -8,6 +8,7 @@ public class CatInBathScript : MonoBehaviour
     public Slider bar;
     private Boolean inTrigger = false;
     private Collider2D inputObject;
+    [SerializeField] private Animator bubbleAnimator;
 
     public Sprite frame1;
     public Sprite frame2;
@@ -27,6 +28,9 @@ public class CatInBathScript : MonoBehaviour
         if(inTrigger)
         {
             washBarScript.IncreaseProgressBar(0.001f);
+            bubbleAnimator.SetBool("isWashing", true);
+        }else{
+            bubbleAnimator.SetBool("isWashing", false);
         }
 
         if (bar.value < .2)

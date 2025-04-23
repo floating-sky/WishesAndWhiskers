@@ -211,6 +211,7 @@ public class LogicScript : MonoBehaviour
         spongeWindow.SetActive(false);
         spongeInBath.SetActive(false);
         catInBath.SetActive(false);
+        duckyArt.SetActive(true);
     }
 
     public void cutSceneOver(){
@@ -233,6 +234,7 @@ public class LogicScript : MonoBehaviour
     public void newMaterialWindowLogic()
     {
         newMaterialWindow.SetActive(false);
+        duckyArt.SetActive(true);
         sofa.ChangeView(2);
     }
 

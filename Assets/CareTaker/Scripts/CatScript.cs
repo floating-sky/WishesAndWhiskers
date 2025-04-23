@@ -64,10 +64,29 @@ public class CatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (inTrigger)
+        {
+            // toy
+            if (inputObject.gameObject.layer == 9)
+            {
+                print("PLAY HOVERING");
+                toyScript.changeMovingToy();
+                print("wantsPlay =" + wantsPlay);
+                if (Input.GetMouseButtonUp(0) && wantsPlay)                     // if mouse released and bowl doesn't have food, add food 
+                {
+                    print("PLAYING");
+                    Play();
+                }
+            }
+        }
+        else
+        {
+            toyScript.changeToy();
+        }
+
         if ((isWalkingToFoodBowl || isWalkingToWaterBowl) && bowlIsDest && Vector3.Distance(transform.position, agent.destination) <= 1)
         {
             bowlIsDest = false;
-            print("REACHED DESTINATION");
             agent.isStopped = true;
             animator.SetBool("isEatingDrinking", true);
             StartCoroutine(WaitForEatingDrinkingAnimation(4f));
@@ -76,26 +95,6 @@ public class CatScript : MonoBehaviour
         if (isWalkingToPlant && Vector3.Distance(transform.position, agent.destination) <= 1)
         {
             GoInsidePlant();
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (inTrigger)
-        {
-            // toy
-            if (inputObject.gameObject.layer == 9)
-            {
-                toyScript.changeMovingToy();
-                if (Input.GetMouseButtonUp(0) && wantsPlay)                     // if mouse released and bowl doesn't have food, add food 
-                {
-                    Play();
-                }
-            }
-        }
-        else
-        {
-            toyScript.changeToy();
         }
     }
 
@@ -150,6 +149,7 @@ public class CatScript : MonoBehaviour
         isBusy = false;
         isDoingBehavior = false;
         animator.SetBool("isPlaying", false);
+        animator.SetBool("isWantingPlay", false);
     }
 
 
@@ -172,7 +172,6 @@ public class CatScript : MonoBehaviour
     {
         if (!isBusy && !isDoingBehavior)
         {
-            print("MOVING CAT");
             agent.SetDestination(GetRandomNavmeshLocation(moveRadius));
         }
     }
@@ -346,7 +345,8 @@ public class CatScript : MonoBehaviour
             isBusy = true;
             isWalkingToFoodBowl = true;
             Vector3 pos = bowls.transform.position;
-            pos.x = pos.x - .5f;
+            pos.x = pos.x - .7f;
+            pos.y = pos.y + .2f;
             agent.SetDestination(pos);
             bowlIsDest = true;
             meowCount = 0;
@@ -360,7 +360,8 @@ public class CatScript : MonoBehaviour
             isBusy = true;
             isWalkingToWaterBowl = true;
             Vector3 pos = bowls.transform.position;
-            pos.x = pos.x + .5f;
+            pos.x = pos.x + .9f;
+            pos.y = pos.y + .2f;
             agent.SetDestination(pos);
             bowlIsDest = true;
             meowCount = 0;
@@ -373,8 +374,7 @@ public class CatScript : MonoBehaviour
         {
             isBusy = true;
             agent.isStopped = true;
-            float secondsToWait = 4f;
-            animator.SetBool("isWantingPlay", false);
+            float secondsToWait = 5f;
             animator.SetBool("isPlaying", true);
             StartCoroutine(WaitForPlayingAnimation(secondsToWait));
             print("cat is playing!");

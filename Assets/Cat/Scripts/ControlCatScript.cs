@@ -84,8 +84,6 @@ public class ControlCatScript : MonoBehaviour
             animator.SetFloat("LastInputY", moveInput.y);
         }
         moveInput = context.ReadValue<Vector2>();
-        print("InputX: " + moveInput.x);
-        print("InputY: " + moveInput.y);
         animator.SetFloat("InputX", moveInput.x);
         animator.SetFloat("InputY", moveInput.y);
     }

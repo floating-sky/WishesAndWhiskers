@@ -16,6 +16,7 @@ TagManager:
   - WashBar
   - Plant
   - CatBed
+  - Music
   layers:
   - Default
   - TransparentFX

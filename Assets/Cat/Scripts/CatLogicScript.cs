@@ -17,6 +17,7 @@ public class CatLogicScript : MonoBehaviour
     public GameObject catBedEButton;
     public GameObject cat;
     public SettingWindowScript settingWindowScript;
+    public static BackgroundMusicScript bgMusic;
     [SerializeField] public static int currentLevel = 0;
     [SerializeField] private SofaScript sofa;
     [SerializeField] private CatClimbingScript catClimbing;
@@ -34,6 +35,9 @@ public class CatLogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bgMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusicScript>();
+        bgMusic.changeMusic(1);
+
         targetTasks = 3;
         sofa = GameObject.FindGameObjectWithTag("Sofa").GetComponent<SofaScript>();
         catClimbing = GameObject.FindGameObjectWithTag("CatClimbing").GetComponent<CatClimbingScript>();

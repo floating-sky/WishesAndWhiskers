@@ -30,6 +30,7 @@ public class LogicScript : MonoBehaviour
     public SofaScriptCarer sofa;
     public SpongeScript spongeScript;
     public SettingWindowScript settingWindowScript;
+    public static BackgroundMusicScript bgMusic;
     public Boolean isBath = false;
     public static Boolean isCutSceneOver = false;
     [SerializeField] private BarScript WashBar;
@@ -40,6 +41,9 @@ public class LogicScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bgMusic = GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusicScript>();
+        bgMusic.changeMusic(0);
+
         // Setting
         int ind = 0;
         feedCount = 0;
@@ -77,13 +81,11 @@ public class LogicScript : MonoBehaviour
     {
         if (duckyArtActive)
         {
-            print("DUCKYART");
             duckyArt.SetActive(true);
         }
 
         if (pawsArtActive)
         {
-            print("PAWSART");
             pawsArt.SetActive(true);
         }
 

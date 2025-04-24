@@ -69,12 +69,9 @@ public class CatScript : MonoBehaviour
             // toy
             if (inputObject.gameObject.layer == 9)
             {
-                print("PLAY HOVERING");
                 toyScript.changeMovingToy();
-                print("wantsPlay =" + wantsPlay);
                 if (Input.GetMouseButtonUp(0) && wantsPlay)                     // if mouse released and bowl doesn't have food, add food 
                 {
-                    print("PLAYING");
                     Play();
                 }
             }
@@ -187,7 +184,6 @@ public class CatScript : MonoBehaviour
             animator.SetBool("isMeowing", true);
             StartCoroutine(WaitForAnimation(secondsToWait, "isMeowing"));
             meowCount++;
-            print("Cat is meowing (HUNGRY)");
         }
     }
 
@@ -202,7 +198,6 @@ public class CatScript : MonoBehaviour
             animator.SetBool("isMeowing", true);
             StartCoroutine(WaitForAnimation(secondsToWait, "isMeowing"));
             meowCount++;
-            print("Cat is meowing (THIRSTY)");
         }
     }
 
@@ -215,7 +210,6 @@ public class CatScript : MonoBehaviour
             //float secondsToWait = 2f;
             animator.SetBool("isWantingPlay", true);
             // StartCoroutine(WaitForAnimation(secondsToWait, "isWantingPlay"));
-            print("Cat wants to play");
         }
     }
 
@@ -232,7 +226,6 @@ public class CatScript : MonoBehaviour
 
     public void GoInsidePlant() 
     {
-        print("going inside plant");
         isWalkingToPlant = false;
         isDoingBehavior = true;
         isBusy = true;
@@ -263,12 +256,10 @@ public class CatScript : MonoBehaviour
         this.isHungry = isHungry;
         if (isHungry)
         {
-            print("Cat is Hungry");
             InvokeRepeating("CatHungryBehavior", 1, hungryMeowInterval);
         }
         else
         {
-            print("Cat is no longer hungry");
             CancelInvoke("CatHungryBehavior");
         }
     }
@@ -286,12 +277,10 @@ public class CatScript : MonoBehaviour
         this.isThirsty = isThirsty;
         if (isThirsty)
         {
-            print("Cat is Thirsty");
             InvokeRepeating("CatThirstyBehavior", 1, thirstyMeowInterval);
         }
         else
         {
-            print("Cat is no longer thirsty");
             CancelInvoke("CatThirstyBehavior");
         }
     }
@@ -303,12 +292,10 @@ public class CatScript : MonoBehaviour
         this.wantsPlay = wantsPlay;
         if (wantsPlay)
         {
-            print("Cat wants to play");
             InvokeRepeating("CatWantsPlayBehavior", 1, wantsPlayInterval);
         }
         else
         {
-            print("Cat no longer wants to play");
             CancelInvoke("CatWantsPlayBehavior");
         }
     }
@@ -320,12 +307,10 @@ public class CatScript : MonoBehaviour
         this.wantsSleepInPlant = wantsSleepInPlant;
         if (wantsSleepInPlant)
         {
-            print("Cat wants to sleep in the plant");
             InvokeRepeating("CatWantsSleepInPlantBehavior", 1, wantsSleepInPlantInterval);
         }
         else
         {
-            print("Cat no longer wants to sleep in the plant");
             CancelInvoke("CatWantsSleepInPlantBehavior");
         }
     }
@@ -377,7 +362,6 @@ public class CatScript : MonoBehaviour
             float secondsToWait = 5f;
             animator.SetBool("isPlaying", true);
             StartCoroutine(WaitForPlayingAnimation(secondsToWait));
-            print("cat is playing!");
             SetWantsPlay(false);
             logicScript.CatPlayed();
         }

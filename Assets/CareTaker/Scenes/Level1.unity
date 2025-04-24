@@ -1153,7 +1153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &303224617
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6165,7 +6165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7786769705363725433, guid: 8de5ee7e70c7c0a49b4259437368441d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6549,6 +6549,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1878819841}
+    - target: {fileID: 1455555434721805816, guid: 326043365b306e34ea9d52f333286fca, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2430483108918758064, guid: 326043365b306e34ea9d52f333286fca, type: 3}
       propertyPath: m_Pivot.x
       value: 0
